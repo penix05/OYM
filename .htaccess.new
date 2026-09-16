@@ -1,0 +1,75 @@
+# =============================================================
+#  株式会社On Your Mark  新サイト用 .htaccess
+#  -------------------------------------------------------------
+#  現行の .htaccess をこの内容で置き換えてください。
+#  1〜2行目のブロックは「現行 .htaccess からそのまま引き継いだ設定」です。
+#  削除したのは WordPress のブロック（BEGIN WordPress 〜 END WordPress）だけです。
+# =============================================================
+
+# ---------- ここから：現行 .htaccess から引き継ぎ ----------
+
+# 常時SSL（http → https）
+RewriteEngine On
+RewriteCond %{HTTPS} !on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# エックスサーバーのサーバーキャッシュ設定。
+# ★ この2行はサーバーパネルの「サーバーキャッシュ設定」が自動生成するものです。
+#   手で書き換えず、変更が必要なときはサーバーパネルから操作してください。
+#   パネルで設定を変更すると、この .htaccess が上書きされることがあります。
+SetEnvIf Request_URI ".*" Ngx_Cache_NoCacheMode=off
+SetEnvIf Request_URI ".*" Ngx_Cache_AllCacheMode
+
+# ---------- ここまで：現行 .htaccess から引き継ぎ ----------
+
+
+# ---------- 旧サイト（WordPress）のURLからの転送 ----------
+# 名刺・パンフレット・求人媒体などに旧URLを記載している場合のみ、
+# コメントを外して実際の対応に書き換えてください。該当がなければ不要です。
+# ※ R=301 は「恒久的な移転」。302 にすると検索評価が引き継がれません。
+#RewriteRule ^company/?$        /company.html          [R=301,L]
+#RewriteRule ^contact/?$        /contact.html          [R=301,L]
+#RewriteRule ^privacy-policy/?$ /privacy.html          [R=301,L]
+
+# ---------- URLの正規化 ----------
+# www あり → なしへ統一（www を使っていない場合も、入れておいて害はありません）
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ https://%1%{REQUEST_URI} [R=301,L]
+
+# /index.html への直リンクを / へ正規化（canonical と揃えるため）
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^index\.html$ / [R=301,L]
+
+# ---------- カスタム404（ステータスコード404を返すために必須） ----------
+ErrorDocument 404 /404.html
+
+# ---------- セキュリティヘッダ ----------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+  # HSTS：https が安定してから有効化してください。
+  # 一度有効にすると、ブラウザ側が一定期間 https を強制するため戻しにくい設定です。
+  #Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# ---------- 圧縮 ----------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml
+</IfModule>
+
+# ---------- ブラウザキャッシュ ----------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css                "access plus 1 year"
+  ExpiresByType application/javascript  "access plus 1 year"
+  ExpiresByType image/webp              "access plus 1 year"
+  ExpiresByType image/png               "access plus 1 year"
+  ExpiresByType image/svg+xml           "access plus 1 year"
+  ExpiresByType text/html               "access plus 10 minutes"
+</IfModule>
+
+# ---------- 文字コード ----------
+AddDefaultCharset UTF-8

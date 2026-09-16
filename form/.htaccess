@@ -1,12 +1,21 @@
-# 設定ファイル・ログ・ライブラリを直接ダウンロードされないようにする
-<FilesMatch "\.(php~|bak|log|csv|ini|md|sample\.php)$">
+# 設定ファイル・ログ・雛形を直接ダウンロードされないようにする
+# ※ .htaccess では <Directory> は使えません（500エラーになります）。
+#    ディレクトリ単位で塞ぐ場合は、そのディレクトリに .htaccess を置いてください。
+<FilesMatch "\.(php~|bak|log|csv|tsv|ini|md|json)$">
   Require all denied
 </FilesMatch>
 <Files "config.php">
   Require all denied
 </Files>
-<IfModule mod_authz_core.c>
-  <Directory "logs">
-    Require all denied
-  </Directory>
+<Files "config.sample.php">
+  Require all denied
+</Files>
+
+# フォームの応答はキャッシュさせない
+# （エックスサーバーのサーバーキャッシュや中間プロキシに拾われると誤動作の原因になります）
+<IfModule mod_headers.c>
+  <FilesMatch "\.php$">
+    Header always set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header always set Pragma "no-cache"
+  </FilesMatch>
 </IfModule>

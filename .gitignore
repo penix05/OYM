@@ -1,3 +1,5 @@
 # サーバー側の実設定（秘密鍵・送信先を含む）はリポジトリに入れない
 form/config.php
-form/logs/
+form/logs/*
+!form/logs/.htaccess
+!form/logs/.gitkeep
