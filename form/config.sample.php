@@ -8,11 +8,14 @@
 return array(
 
   // 通知の送信先（複数指定可）
+  //   例: array('contact@oym.co.jp', 'eigyo@oym.co.jp')
   'to'            => array('contact@oym.co.jp'),
 
   // 送信元アドレス。必ず「自社ドメインの実在するアドレス」にしてください。
   // 入力者のアドレスを From に使うとなりすまし扱いになり、迷惑メール判定されます。
-  'from'          => 'no-reply@oym.co.jp',
+  // contact@oym.co.jp（= 受信先と同じ）でも問題ありません。むしろ自動返信の差出人も
+  // このアドレスになるため、お客様が自動返信にそのまま返信しても担当者に届きます。
+  'from'          => 'contact@oym.co.jp',
   'from_name'     => 'On Your Mark サイト',
 
   // 自動返信メールを送るか

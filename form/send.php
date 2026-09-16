@@ -184,15 +184,25 @@ if (!empty($cfg['autoreply'])) {
         ($message !== '' ? $message : '（未入力）'),
         '───────────────────────────',
         '',
-        '※本メールは自動送信です。ご返信いただいても対応いたしかねます。',
+        '※本メールは自動送信ですが、このままご返信いただければ担当者に届きます。',
         '',
         '株式会社On Your Mark',
         '〒150-0034 東京都渋谷区代官山町9-10 SodaCCo 3F',
         'TEL：03-6455-3217',
         'https://oym.co.jp/',
     ));
+    // 自動返信の Reply-To は「お問い合わせ窓口」に向ける。
+    // 通知メール用の $headers を流用すると Reply-To が受信者自身になり、返信が迷子になる。
+    $replyHeaders = array(
+        'From: ' . $fromName . ' <' . $from . '>',
+        'Reply-To: ' . $to[0],
+        'MIME-Version: 1.0',
+        'Content-Type: text/plain; charset=UTF-8',
+        'Auto-Submitted: auto-replied',
+        'X-Mailer: OYM-Site',
+    );
     @mb_send_mail($email, (string)($cfg['autoreply_subject'] ?? 'お問い合わせありがとうございます'),
-        $replyBody, implode("\r\n", $headers), '-f' . $from);
+        $replyBody, implode("\r\n", $replyHeaders), '-f' . $from);
 }
 
 /* ---- 送信記録（CSV） ---- */
