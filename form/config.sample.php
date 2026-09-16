@@ -34,8 +34,10 @@ return array(
   'token_secret'  => 'CHANGE-ME-TO-A-LONG-RANDOM-STRING',
   'token_ttl'     => 3600, // ダウンロードURLの有効期間（秒）
 
-  // 配布するPDF（Web公開領域の外に置くのが理想）
-  'download_file' => __DIR__ . '/../docs/OYM_教育機関向けサービス案内.pdf',
+  // 配布するPDF。
+  //   download_file … サーバー上の実ファイル名（文字化けを避けるため半角英数）
+  //   download_name … 利用者のPCに保存されるときのファイル名（日本語でOK）
+  'download_file' => __DIR__ . '/../docs/OYM_service-guide.pdf',
   'download_name' => 'OYM_教育機関向けサービス案内.pdf',
 
   // 同一IPからの連続送信を制限（秒）

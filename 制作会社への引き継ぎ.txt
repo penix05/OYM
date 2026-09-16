@@ -16,7 +16,9 @@
      logo.webp（ヘッダー/フッターロゴ） logo-hero.webp（TOP大ロゴ）
      main-visual.webp（TOPメイン人物） famfam-cafe.webp（就活カフェ店内）
      whiteboard.webp（三者モデル） startline.webp（会社概要・全幅画像）
-  docs/                    … 配布PDF（教育機関向けサービス案内／旅行業約款）
+  docs/                    … 配布PDF（OYM_service-guide.pdf＝教育機関向けサービス案内／OYM_travel-terms.pdf＝旅行業約款）
+                             ※ファイル名を半角英数にしています（FTP転送時の文字化け防止）。
+                               利用者に見えるダウンロード名は form/config.php の download_name で日本語を指定します。
   favicon.svg / favicon-32.png / apple-touch-icon.png / ogp.png … アイコン・OGP画像
   sitemap.xml / robots.txt … SEO用
 
