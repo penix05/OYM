@@ -71,8 +71,10 @@ jobs:
           # 注意: ここはブロックスカラー（リテラル文字列）なので、
           #       「#」で始まる行もそのまま除外パターンとして解釈されます。
           #       コメントを書かないでください。
-          #   - form/config.php, form/logs  … サーバー側だけに存在する実設定・記録
-          #   - wp-*                        … 現行WordPressを巻き込まないための保険
+          #   - form/config.php, form/logs … サーバー側だけに存在する実設定・記録
+          #   - wp/, css/, images/, js/, scss/, index.php, .user.ini
+          #       … 現行サイト（WordPressはwp/配下）を巻き込まないための保険。
+          #         実際の構成に合わせています。削除は手動で行ってください。
           exclude: |
             **/.git*
             **/.git*/**
@@ -83,10 +85,13 @@ jobs:
             .htaccess.sample
             form/config.php
             form/logs/**
-            wp-config.php
-            wp-content/**
-            wp-admin/**
-            wp-includes/**
+            wp/**
+            css/**
+            images/**
+            js/**
+            scss/**
+            index.php
+            .user.ini
 
       - name: 完了メッセージ
         if: success()
