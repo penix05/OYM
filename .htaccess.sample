@@ -22,6 +22,18 @@
   RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]
 </IfModule>
 
+# ---------- 旧サイト（WordPress）のURLからの転送 ----------
+# 名刺・パンフレット・求人媒体などに旧URLを記載している場合のみ、
+# 下のコメントを外して実際の対応に書き換えてください。
+# 該当がなければ不要です（旧URLは404ページが出ます）。
+# ※ R=301 は「恒久的な移転」。302 にすると検索評価が引き継がれません。
+#<IfModule mod_rewrite.c>
+#  RewriteEngine On
+#  RewriteRule ^company/?$        /company.html   [R=301,L]
+#  RewriteRule ^contact/?$        /contact.html   [R=301,L]
+#  RewriteRule ^privacy-policy/?$ /privacy.html   [R=301,L]
+#</IfModule>
+
 # ---------- カスタム404（ステータスコード404を返すために必須） ----------
 ErrorDocument 404 /404.html
 
