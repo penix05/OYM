@@ -12,15 +12,14 @@
 # =============================================================
 name: Deploy to Xserver
 
-# 現在は手動アップロードで運用しているため、pushでの自動実行は無効にしています。
-# 自動デプロイに切り替えるときは、下の push: ブロックのコメントを外し、
-# Secrets（FTP_SERVER / FTP_USERNAME / FTP_PASSWORD）と
-# Variables（DEPLOY_DIR / FTP_PROTOCOL）を登録してください。
+# push で自動デプロイされます。
+# 手動実行だけにしたい場合は、下の push: ブロックをコメントアウトしてください
+# （Actions タブの「Run workflow」からの実行は、どちらの設定でも使えます）。
 on:
-  #push:
-  #  branches:
-  #    - main
-  #    - claude/site-launch-improvements-58duhc
+  push:
+    branches:
+      - main
+      - claude/site-launch-improvements-58duhc
   workflow_dispatch:
     inputs:
       dry_run:
