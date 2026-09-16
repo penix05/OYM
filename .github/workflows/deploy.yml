@@ -1,0 +1,100 @@
+# =============================================================
+#  On Your Mark サイト  自動デプロイ（エックスサーバー / FTP・FTPS）
+#  -------------------------------------------------------------
+#  このブランチにpushすると、サーバーへ自動アップロードされます。
+#  事前にGitHub側で下記の設定が必要です（設定手順.md 参照）。
+#
+#    Secrets   … FTP_SERVER / FTP_USERNAME / FTP_PASSWORD
+#    Variables … DEPLOY_DIR（必須） / FTP_PROTOCOL（任意・既定は ftps）
+#
+#  ※ 初回は必ず「Actions」タブから手動実行し、dry_run = true で
+#     「何がアップロードされるか」を確認してください。
+# =============================================================
+name: Deploy to Xserver
+
+on:
+  push:
+    branches:
+      - main
+      - claude/site-launch-improvements-58duhc
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: '実際には転送せず、対象ファイルの一覧だけ表示する'
+        type: boolean
+        default: true
+
+concurrency:
+  group: deploy-xserver
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 設定の確認
+        env:
+          DEPLOY_DIR: ${{ vars.DEPLOY_DIR }}
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          fail=0
+          for v in DEPLOY_DIR FTP_SERVER FTP_USERNAME FTP_PASSWORD; do
+            if [ -z "$(eval echo \$$v)" ]; then echo "::error::$v が未設定です。"; fail=1; fi
+          done
+          if [ "$fail" = "1" ]; then
+            echo "Settings → Secrets and variables → Actions で設定してください。"
+            echo "  Secrets   : FTP_SERVER / FTP_USERNAME / FTP_PASSWORD"
+            echo "  Variables : DEPLOY_DIR（例: /oym.co.jp/public_html/）"
+            exit 1
+          fi
+          case "$DEPLOY_DIR" in
+            */) ;;
+            *) echo "::error::DEPLOY_DIR は末尾にスラッシュが必要です（例: /oym.co.jp/public_html/）"; exit 1 ;;
+          esac
+          echo "転送先: $DEPLOY_DIR"
+
+      - name: アップロード
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server:      ${{ secrets.FTP_SERVER }}
+          username:    ${{ secrets.FTP_USERNAME }}
+          password:    ${{ secrets.FTP_PASSWORD }}
+          protocol:    ${{ vars.FTP_PROTOCOL || 'ftps' }}
+          server-dir:  ${{ vars.DEPLOY_DIR }}
+          dry-run:     ${{ inputs.dry_run || false }}
+          # 差分だけを転送するための状態ファイル（サーバー上に作られます）
+          state-name:  .ftp-deploy-sync-state.json
+          # 注意: ここはブロックスカラー（リテラル文字列）なので、
+          #       「#」で始まる行もそのまま除外パターンとして解釈されます。
+          #       コメントを書かないでください。
+          #   - form/config.php, form/logs  … サーバー側だけに存在する実設定・記録
+          #   - wp-*                        … 現行WordPressを巻き込まないための保険
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/node_modules/**
+            *.md
+            制作会社への引き継ぎ.txt
+            .htaccess.sample
+            form/config.php
+            form/logs/**
+            wp-config.php
+            wp-content/**
+            wp-admin/**
+            wp-includes/**
+
+      - name: 完了メッセージ
+        if: success()
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            echo "### 確認のみ実行しました（ファイルは転送していません）" >> $GITHUB_STEP_SUMMARY
+            echo "上のログで転送対象を確認し、問題なければ dry_run を外して再実行してください。" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### デプロイ完了" >> $GITHUB_STEP_SUMMARY
+            echo "転送先: \`${{ vars.DEPLOY_DIR }}\`" >> $GITHUB_STEP_SUMMARY
+          fi
