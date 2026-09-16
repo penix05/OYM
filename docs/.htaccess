@@ -1,0 +1,6 @@
+# 資料PDFはフォーム送信後のワンタイムURL（form/download.php）経由でのみ配布する。
+# 直リンク・検索エンジンからの直接アクセスを禁止。
+# ※ 旅行業約款PDFなど「誰でも見てよい資料」はこのフォルダの外に置いてください。
+<FilesMatch "\.pdf$">
+  Require all denied
+</FilesMatch>

@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# 完了ページ・エラーページ
+Disallow: /thanks.html
+Disallow: /dl-thanks.html
+Disallow: /404.html
+
+# フォーム処理・配布用PDF（フォーム送信後のワンタイムURLでのみ配布）
+Disallow: /form/
+Disallow: /docs/
+
+Sitemap: https://oym.co.jp/sitemap.xml

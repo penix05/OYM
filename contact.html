@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お問い合わせ｜株式会社On Your Mark</title>
+<meta name="description" content="On Your Markへのお問い合わせフォーム。教育機関・企業・学生・その他からのご相談を受け付けています。「一度話を聞いてみたい」だけでも歓迎です。">
+<link rel="canonical" href="https://oym.co.jp/contact.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="お問い合わせ｜株式会社On Your Mark">
+<meta property="og:description" content="On Your Markへのお問い合わせフォーム。教育機関・企業・学生・その他からのご相談を受け付けています。「一度話を聞いてみたい」だけでも歓迎です。">
+<meta property="og:url" content="https://oym.co.jp/contact.html">
+<meta property="og:site_name" content="株式会社On Your Mark">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oym.co.jp/ogp.png">
+<meta property="og:image" content="https://oym.co.jp/ogp.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="theme-color" content="#e8467c">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Barlow+Semi+Condensed:wght@500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "TOP", "item": "https://oym.co.jp/"}, {"@type": "ListItem", "position": 2, "name": "お問い合わせ", "item": "https://oym.co.jp/contact.html"}]}</script>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="index.html" aria-label="On Your Mark トップページ">
+      <img class="logo-img" src="assets/images/logo.webp" alt="On Your Mark!" width="480" height="168">
+    </a>
+    <nav class="gnav" id="gnav" aria-label="グローバルナビゲーション">
+      <ul>
+        <li><a href="service-school.html">教育機関の方へ</a></li><li><a href="service-business.html">企業の方へ</a></li><li><a href="service-students.html">学生の方へ</a></li><li><a href="company.html">会社概要</a></li>
+      </ul>
+      <div class="m-actions">
+        <a href="download.html">資料ダウンロード</a>
+        <a href="contact.html">お問い合わせ</a>
+      </div>
+    </nav>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a class="header-dl" href="download.html">資料ダウンロード</a>
+      <a class="header-cta" href="contact.html">お問い合わせ</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="gnav" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="breadcrumb"><a href="index.html">TOP</a> ／ お問い合わせ</p>
+    <p class="kicker">Contact</p>
+    <h1>お問い合わせ</h1>
+    <p class="lede">「一度話を聞いてみたい」だけでも歓迎です。通常、担当者より折り返しご連絡いたします。資料をご希望の方は<a href="download.html">資料ダウンロード</a>もご利用ください。</p>
+  </div>
+</section>
+
+<section class="section on-mist">
+  <div class="wrap" style="max-width:760px">
+    <form id="contact-form" class="form-card" novalidate>
+      <fieldset style="border:none">
+        <legend style="font-weight:700;color:var(--ink);margin-bottom:14px">お問い合わせの種類<span class="req">必須</span></legend>
+        <div class="audience-switch">
+          <input type="radio" name="audience" id="aud-school" value="school" checked>
+          <label for="aud-school">教育機関の方</label>
+          <input type="radio" name="audience" id="aud-company" value="company">
+          <label for="aud-company">企業の方</label>
+          <input type="radio" name="audience" id="aud-student" value="student">
+          <label for="aud-student">学生の方</label>
+          <input type="radio" name="audience" id="aud-other" value="other">
+          <label for="aud-other">その他</label>
+        </div>
+      </fieldset>
+
+      <div class="form-row">
+        <label for="name">お名前<span class="req">必須</span></label>
+        <input type="text" id="name" name="name" required autocomplete="name">
+      </div>
+      <div class="form-row">
+        <label for="org">学校・企業名<span style="color:var(--mist);font-weight:400;font-size:.82em">（学生・その他の方は任意）</span></label>
+        <input type="text" id="org" name="org" autocomplete="organization" placeholder="例：〇〇専門学校／株式会社〇〇">
+      </div>
+      <div class="form-row">
+        <label for="email">メールアドレス<span class="req">必須</span></label>
+        <input type="email" id="email" name="email" required autocomplete="email">
+      </div>
+      <div class="form-row">
+        <label for="tel">電話番号（任意）</label>
+        <input type="tel" id="tel" name="tel" autocomplete="tel">
+      </div>
+      <div class="form-row">
+        <label for="message">お問い合わせ内容<span class="req">必須</span></label>
+        <textarea id="message" name="message" required placeholder="ご相談の内容をご記入ください。箇条書きでも構いません。"></textarea>
+      </div>
+
+      <div class="hp-field" aria-hidden="true">
+        <label for="website">このフィールドは入力しないでください</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <p class="form-consent">送信いただいた個人情報は、<a href="privacy.html">プライバシーポリシー</a>に基づき取り扱います。担当者からのご連絡以外の目的には使用しません。</p>
+      <div class="form-row form-consent-row">
+        <label class="checkbox-label" for="consent">
+          <input type="checkbox" id="consent" name="consent" required>
+          <span><a href="privacy.html">プライバシーポリシー</a>に同意のうえ送信します<span class="req">必須</span></span>
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary" style="border:none;cursor:pointer;width:100%;font-size:1rem">この内容で送信する</button>
+    </form>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img class="logo-img" src="assets/images/logo.webp" alt="On Your Mark!" width="480" height="168">
+      <p>専門学校の就職支援を中心に、キャリア教育・企業連携・学校行事・研修旅行まで。<br>学校の魅力と競争力を高める総合支援会社です。</p>
+      <p style="margin-top:14px;font-size:.8rem;line-height:1.9;color:#8b88a0">株式会社On Your Mark<br>〒150-0034 東京都渋谷区代官山町9-10 SodaCCo 3F<br>TEL：03-6455-3217　FAX：03-6455-3218</p>
+    </div>
+    <div>
+      <h4>サービス</h4>
+      <ul>
+        <li><a href="service-school.html">教育機関の方へ</a></li>
+        <li><a href="service-business.html">企業の方へ</a></li>
+        <li><a href="service-students.html">学生の方へ</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>会社案内</h4>
+      <ul>
+        <li><a href="company.html">会社概要</a></li>
+        <li><a href="privacy.html">プライバシーポリシー</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>お問い合わせ</h4>
+      <ul>
+        <li><a href="contact.html">お問い合わせ</a></li>
+        <li><a href="download.html">資料ダウンロード</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="wrap">
+      <p>© 株式会社On Your Mark</p>
+      <p><a href="privacy.html" style="color:inherit">プライバシーポリシー</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- reCAPTCHA v3 を使う場合は、下の行のコメントを外し、config.js と同じサイトキーを入れてください
+<script src="https://www.google.com/recaptcha/api.js?render=RECAPTCHA_SITE_KEY"></script>
+-->
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+<script>oymContactInit('thanks.html');</script>
+</body>
+</html>

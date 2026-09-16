@@ -1,0 +1,12 @@
+# 設定ファイル・ログ・ライブラリを直接ダウンロードされないようにする
+<FilesMatch "\.(php~|bak|log|csv|ini|md|sample\.php)$">
+  Require all denied
+</FilesMatch>
+<Files "config.php">
+  Require all denied
+</Files>
+<IfModule mod_authz_core.c>
+  <Directory "logs">
+    Require all denied
+  </Directory>
+</IfModule>
