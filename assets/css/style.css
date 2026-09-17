@@ -215,12 +215,26 @@ ul,ol{list-style:none}
 .hero-light{position:relative;background:#ffffff;color:var(--ink);overflow:hidden;min-height:640px}
 .hero-light::before{content:"";position:absolute;width:620px;height:620px;border-radius:50%;
   background:radial-gradient(circle,rgba(242,192,76,.34),transparent 62%);top:-260px;left:-200px;pointer-events:none;z-index:3}
-.hero-light .hero-bg{position:absolute;inset:0;z-index:0}
-.hero-light .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 82%;mix-blend-mode:multiply}
+.hero-light .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+/* 画像は「横幅を切らない」ことを優先する。
+   8人が横一列に並ぶ構図のため、左右が切れると人物が欠けてしまう。
+   高さが足りない場合は、上部の白い余白だけが切れるように下端を基準にする。 */
+.hero-light .hero-bg img{
+  position:absolute;right:0;bottom:0;
+  width:100%;max-width:1500px;height:auto;
+  mix-blend-mode:multiply;
+}
 .hero-light .hero-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(98deg,rgba(255,255,255,.9) 0%,rgba(255,255,255,.72) 26%,rgba(255,255,255,.34) 44%,rgba(255,255,255,0) 60%)}
 .hero-light .hero-inner{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:70px 24px 72px;min-height:640px;display:flex;align-items:center}
-.hero-light .hero-copy{max-width:600px}
+.hero-light .hero-copy{max-width:660px}
+/* 見出しは単語の途中で改行させない（body の overflow-wrap:anywhere を打ち消す）。
+   word-break:keep-all は使わないこと。日本語の改行位置が一切なくなり、
+   狭い画面で見出しが画面外にはみ出す。 */
+.hero h1{overflow-wrap:normal}
+/* 「専門学校へ。」だけは分離させない。
+   広い画面では1行に収まり、狭い画面ではこのまとまりごと次の行へ送られる。 */
+.hero h1 .nowrap{white-space:nowrap}
 .hero-light .hero-logo{width:min(320px,72%);height:auto;margin-bottom:18px;filter:drop-shadow(0 10px 26px rgba(123,94,167,.2))}
 .hero-light .kicker{margin-bottom:14px;text-shadow:0 1px 8px #fff}
 .hero-light h1{color:var(--ink);text-shadow:0 1px 2px #fff,0 0 14px rgba(255,255,255,.95)}
@@ -230,8 +244,8 @@ ul,ol{list-style:none}
   .hero-light{min-height:0;display:flex;flex-direction:column}
   .hero-light .hero-inner{order:1;display:block;min-height:0;padding:56px 24px 0}
   .hero-light .hero-scrim{display:none}
-  .hero-light .hero-bg{order:2;position:relative;inset:auto;margin-top:10px}
-  .hero-light .hero-bg img{height:auto;object-fit:contain}
+  .hero-light .hero-bg{order:2;position:relative;inset:auto;margin-top:10px;overflow:visible}
+  .hero-light .hero-bg img{position:static;width:100%;max-width:100%;height:auto}
   .hero-light .hero-copy{max-width:640px}
 }
 
