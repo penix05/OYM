@@ -90,8 +90,18 @@ if (!empty($cfg['recaptcha_secret'])) {
 function oym_post(string $key, int $max = 1000): string {
     $v = (string)($_POST[$key] ?? '');
     $v = str_replace(array("\r\n", "\r"), "\n", trim($v));
-    // ヘッダインジェクション対策（改行を含む値はヘッダに使わないが、念のため除去）
     return mb_substr($v, 0, $max);
+}
+
+/**
+ * メールヘッダ（件名・Reply-To等）に入れる値から制御文字を取り除く。
+ * 改行が1つでも残ると、そこから任意のヘッダを注入できてしまうため、
+ * ヘッダに使う値は必ずこの関数を通すこと。
+ */
+function oym_header_safe(string $v): string {
+    // 改行・タブ・その他の制御文字をすべて除去（本文用の値には使わない）
+    $v = preg_replace('/[\x00-\x1F\x7F]+/u', ' ', $v);
+    return trim((string)$v);
 }
 
 $formType = oym_post('form_type', 20) === 'download' ? 'download' : 'contact';
@@ -118,14 +128,20 @@ if (!$consent) { $errors[] = '個人情報の取扱いへの同意'; }
 if ($errors) {
     oym_fail('次の項目をご確認ください：' . implode('、', $errors));
 }
-if (preg_match('/[\r\n]/', $name . $email)) {
-    oym_fail('不正な文字が含まれています。');
+// ヘッダに入る値（件名・Reply-To）に制御文字が含まれていないことを確認したうえで、
+// 念のため除去した値をヘッダ組み立てに使う。
+if (preg_match('/[\x00-\x1F\x7F]/u', $name . $org . $email)) {
+    oym_fail('お名前・学校企業名・メールアドレスに使用できない文字が含まれています。');
 }
+$nameHdr = oym_header_safe($name);
+$orgHdr  = oym_header_safe($org);
 
 /* ---- 通知メールの作成 ---- */
+$subjectWho = $nameHdr . ($orgHdr !== '' ? '（' . $orgHdr . '）' : '');
 $subject = $formType === 'download'
-    ? '【サイト】資料ダウンロード申込：' . $name . ($org !== '' ? '（' . $org . '）' : '')
-    : '【サイト】お問い合わせ（' . $audienceLabel . '）：' . $name . ($org !== '' ? '（' . $org . '）' : '');
+    ? '【サイト】資料ダウンロード申込：' . $subjectWho
+    : '【サイト】お問い合わせ（' . $audienceLabel . '）：' . $subjectWho;
+$subject = mb_substr($subject, 0, 150);
 
 $lines = array(
     'Webサイトのフォームから送信がありました。',

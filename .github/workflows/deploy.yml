@@ -85,7 +85,6 @@ jobs:
             **/node_modules/**
             *.md
             制作会社への引き継ぎ.txt
-            .htaccess.new
             form/config.php
             form/logs/**
             wp/**

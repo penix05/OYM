@@ -22,8 +22,12 @@ return array(
   'autoreply'         => true,
   'autoreply_subject' => '【On Your Mark】お問い合わせありがとうございます',
 
-  // 送信記録をCSVに残す（不要なら空文字に）。Web公開領域の外を推奨。
-  'log_file'      => __DIR__ . '/logs/submissions.csv',
+  // 送信記録をCSVに残す（不要なら空文字に）。
+  // ★既定では public_html の外（/oym.co.jp/form-logs/）に保存します。
+  //   個人情報を含むファイルなので、Web公開領域の中には置かないでください。
+  //   保存に失敗する場合のみ __DIR__ . '/logs/submissions.csv' に変更してください
+  //   （その場合も form/logs/.htaccess で直接アクセスは禁止されます）。
+  'log_file'      => dirname(__DIR__, 2) . '/form-logs/submissions.csv',
 
   // reCAPTCHA v3（使わない場合は空文字のまま）
   'recaptcha_secret'    => '',
