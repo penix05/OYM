@@ -224,8 +224,11 @@ ul,ol{list-style:none}
   width:100%;max-width:1500px;height:auto;
   mix-blend-mode:multiply;
 }
+/* 文字が乗る左半分は白を濃く保ち、そこから写真へ抜けさせる。
+   ここを薄くすると、本文が人物の暗い部分に重なって読めなくなる（実測1.35:1）。
+   変更する場合は必ずコントラストを測り直すこと。 */
 .hero-light .hero-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(98deg,rgba(255,255,255,.9) 0%,rgba(255,255,255,.72) 26%,rgba(255,255,255,.34) 44%,rgba(255,255,255,0) 60%)}
+  background:linear-gradient(98deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.95) 43%,rgba(255,255,255,.82) 57%,rgba(255,255,255,.32) 69%,rgba(255,255,255,0) 80%)}
 .hero-light .hero-inner{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:70px 24px 72px;min-height:640px;display:flex;align-items:center}
 .hero-light .hero-copy{max-width:660px}
 /* 見出しは単語の途中で改行させない（body の overflow-wrap:anywhere を打ち消す）。
@@ -239,7 +242,7 @@ ul,ol{list-style:none}
 .hero-light .kicker{margin-bottom:14px;text-shadow:0 1px 8px #fff}
 .hero-light h1{color:var(--ink);text-shadow:0 1px 2px #fff,0 0 14px rgba(255,255,255,.95)}
 .hero-light h1 .accent{-webkit-text-fill-color:var(--rose);color:var(--rose);background:none;text-shadow:0 1px 2px #fff,0 0 14px rgba(255,255,255,.95)}
-.hero-light .sub{color:#4a4956;max-width:29em;text-shadow:0 1px 6px #fff,0 0 3px #fff}
+.hero-light .sub{color:var(--ink);max-width:29em;text-shadow:0 1px 6px #fff,0 0 3px #fff}
 @media (max-width:1024px){
   .hero-light{min-height:0;display:flex;flex-direction:column}
   .hero-light .hero-inner{order:1;display:block;min-height:0;padding:56px 24px 0}
