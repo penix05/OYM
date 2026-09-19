@@ -239,7 +239,19 @@ ul,ol{list-style:none}
 .hero-light .kicker{margin-bottom:14px;text-shadow:0 1px 8px #fff}
 .hero-light h1{color:var(--ink);text-shadow:0 1px 2px #fff,0 0 14px rgba(255,255,255,.95)}
 .hero-light h1 .accent{-webkit-text-fill-color:var(--rose);color:var(--rose);background:none;text-shadow:0 1px 2px #fff,0 0 14px rgba(255,255,255,.95)}
-.hero-light .sub{color:#4a4956;max-width:29em;text-shadow:0 1px 6px #fff,0 0 3px #fff}
+/* リード文は写真の上に乗るため、文字を濃くしたうえで白い縁取りで浮かせる。
+   旧実装の text-shadow（6pxのぼかし）は輪郭を内側から侵食し、線が細く・かすれて見えていた。
+   paint-order:stroke fill は縁取りを文字の「背後」に描くため、輪郭を削らない。
+   ※ paint-order 非対応の環境では縁取りが文字の上に乗って白く潰れるため、
+      @supports で囲って対応環境だけに適用すること。 */
+.hero-light .sub{color:var(--ink);max-width:29em;text-shadow:0 1px 6px #fff,0 0 3px #fff}
+@supports (paint-order: stroke){
+  .hero-light .sub{
+    text-shadow:none;
+    -webkit-text-stroke:3px rgba(255,255,255,.92);
+    paint-order:stroke fill;
+  }
+}
 @media (max-width:1024px){
   .hero-light{min-height:0;display:flex;flex-direction:column}
   .hero-light .hero-inner{order:1;display:block;min-height:0;padding:56px 24px 0}
