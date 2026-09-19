@@ -19,7 +19,7 @@
   docs/                    … 配布PDF（OYM_service-guide.pdf＝教育機関向けサービス案内／OYM_travel-terms.pdf＝旅行業約款）
                              ※ファイル名を半角英数にしています（FTP転送時の文字化け防止）。
                                利用者に見えるダウンロード名は form/config.php の download_name で日本語を指定します。
-  favicon.svg / favicon-32.png / apple-touch-icon.png / ogp.png … アイコン・OGP画像
+  favicon.ico / favicon-32.png / favicon-48.png / apple-touch-icon.png / ogp.png … アイコン・OGP画像
   sitemap.xml / robots.txt … SEO用
 
 ※ ヘッダー・フッターは各ページに記述されています（静的HTMLの標準）。ナビ項目を変える場合は全ページ分を同様に修正してください。
