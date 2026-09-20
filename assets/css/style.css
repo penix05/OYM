@@ -633,3 +633,65 @@ button:disabled{opacity:.6;cursor:progress}
 
 /* JavaScriptが無効・読み込み失敗でも本文が消えないようにする */
 .no-js .reveal{opacity:1;transform:none}
+
+/* =============================================================
+   企業向けページ（service-business.html）専用
+   すべて .page-business で限定しているため、他ページには影響しない。
+   ============================================================= */
+
+/* サービス名称（H1の上に置く小さな行） */
+.page-business .biz-service-name{
+  margin-top:10px;font-weight:700;font-size:.92rem;letter-spacing:.02em;
+  color:var(--ink);
+}
+
+/* 特徴を示す短いラベル */
+.page-business .biz-labels{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;
+}
+.page-business .biz-labels li{
+  font-size:.78rem;font-weight:700;letter-spacing:.02em;color:var(--ink);
+  border:1px solid var(--line);background:var(--white);
+  border-radius:999px;padding:7px 14px;line-height:1.5;
+}
+
+/* 冒頭の補助リンク */
+.page-business .biz-sublink{margin-top:14px;font-size:.88rem}
+.page-business .biz-sublink a{color:var(--blue);text-underline-offset:3px}
+
+/* 補足（主な特徴3項目より控えめに見せる） */
+.page-business .biz-subnote{
+  margin-top:30px;padding:22px 24px;
+  background:var(--white);border:1px dashed var(--line);border-radius:12px;
+  max-width:52em;
+}
+.page-business .biz-subnote h3{
+  font-size:.95rem;color:var(--ink);margin-bottom:8px;
+}
+.page-business .biz-subnote p{font-size:.88rem;color:#5d5b6b;line-height:1.95}
+.page-business .biz-subnote .biz-subnote-add{
+  margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);
+  font-size:.84rem;
+}
+
+/* スマホ用の固定相談ボタン */
+.page-business .cta-sticky{display:none}
+@media (max-width:900px){
+  .page-business .cta-sticky{
+    display:flex;position:fixed;left:0;right:0;bottom:0;z-index:90;
+    padding:10px 16px;
+    padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));
+    background:rgba(255,253,250,.95);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    border-top:1px solid var(--line);
+    box-shadow:0 -4px 18px rgba(40,40,60,.06);
+  }
+  .page-business .cta-sticky .btn{flex:1;padding:14px 18px;font-size:.92rem}
+  /* 固定ボタンがフッターを隠さないよう、下に余白を確保する */
+  .page-business .site-footer{
+    padding-bottom:calc(72px + env(safe-area-inset-bottom,0px));
+  }
+}
+@media (max-width:900px) and (prefers-reduced-motion: reduce){
+  .page-business .cta-sticky{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--paper)}
+}
