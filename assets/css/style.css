@@ -669,10 +669,23 @@ button:disabled{opacity:.6;cursor:progress}
   font-size:.95rem;color:var(--ink);margin-bottom:8px;
 }
 .page-business .biz-subnote p{font-size:.88rem;color:#5d5b6b;line-height:1.95}
-.page-business .biz-subnote .biz-subnote-add{
-  margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);
-  font-size:.84rem;
+
+/* セクション内の小見出し（サービス一覧の上） */
+.page-business .biz-sub-head{
+  margin-top:40px;font-size:1.02rem;color:var(--ink);
 }
+
+/* ご利用いただけるサービス */
+.page-business .biz-services{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px;
+}
+@media (max-width:760px){.page-business .biz-services{grid-template-columns:1fr}}
+.page-business .biz-services li{
+  background:var(--white);border:1px solid var(--line);border-radius:12px;
+  padding:16px 18px;
+}
+.page-business .biz-services strong{display:block;font-size:.95rem;margin-bottom:5px}
+.page-business .biz-services span{display:block;font-size:.85rem;color:#5d5b6b;line-height:1.9}
 
 /* スマホ用の固定相談ボタン */
 .page-business .cta-sticky{display:none}
