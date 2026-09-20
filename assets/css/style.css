@@ -275,25 +275,78 @@ ul,ol{list-style:none}
 .on-ink .btn-ghost,.cta-band .btn-ghost,.hero .btn-ghost.on-dark{border-color:#fff;color:#fff}
 .btn-ghost.dark{color:var(--ink);border-color:var(--ink)}
 .btn-small{padding:10px 20px;font-size:.85rem}
+/* ファーストビューは背景に写真があるため、枠だけのボタンは白で塗る */
+.hero-light .btn-ghost{background:var(--white)}
 
-/* ---------- audience gate strip ---------- */
-.gate{background:var(--paper);border-top:1px solid var(--line)}
-.gate .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding-top:22px;padding-bottom:26px}
+
+/* ---------- audience gate strip ----------
+   3つの入口。バナーだと一目でわかるよう、アイコン・色帯・矢印で構成する。
+   テキストに横幅を使えるよう、アイコンは上、矢印は右下に置く。
+   ------------------------------------------ */
+.gate{background:var(--mist-bg);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.gate .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-top:30px;padding-bottom:34px}
 .gate a{
-  display:block;background:var(--white);color:var(--ink);text-decoration:none;
-  padding:18px 22px;transition:transform .15s, box-shadow .2s;
-  border:1px solid var(--line);border-radius:var(--radius);position:relative;overflow:hidden;
+  display:block;position:relative;overflow:hidden;
+  background:var(--white);color:var(--ink);text-decoration:none;
+  padding:22px 22px 22px 28px;
+  border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:0 2px 10px rgba(40,40,60,.05);
+  transition:transform .15s, box-shadow .2s;
 }
 .gate a::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--blue)}
 .gate a:nth-child(1)::before{background:var(--grad-warm)}
 .gate a:nth-child(2)::before{background:var(--blue)}
 .gate a:nth-child(3)::before{background:var(--green)}
-.gate a:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(40,40,60,.08)}
-.gate .who{font-family:var(--num);font-weight:600;letter-spacing:.16em;font-size:.74rem;text-transform:uppercase;color:var(--mist)}
-.gate .what{font-weight:700;margin-top:2px;display:flex;justify-content:space-between;align-items:center;gap:8px}
-.gate .what::after{content:"→";background:var(--grad-warm);-webkit-background-clip:text;background-clip:text;color:transparent}
-.gate a.primary-gate .who{color:var(--rose)}
-@media (max-width:760px){.gate .wrap{grid-template-columns:1fr}}
+.gate a:hover,.gate a:focus-visible{transform:translateY(-3px);box-shadow:0 14px 30px rgba(40,40,60,.12)}
+
+/* アイコン */
+.gate .gate-ico{
+  display:grid;place-items:center;
+  width:46px;height:46px;border-radius:14px;margin-bottom:14px;
+}
+.gate .gate-ico svg{width:24px;height:24px}
+.gate a:nth-child(1) .gate-ico{background:rgba(232,70,124,.10);color:var(--rose)}
+.gate a:nth-child(2) .gate-ico{background:rgba(47,125,209,.10);color:var(--blue)}
+.gate a:nth-child(3) .gate-ico{background:rgba(43,182,115,.10);color:var(--green)}
+
+/* テキスト */
+.gate .who{
+  display:block;font-family:var(--num);font-weight:600;letter-spacing:.16em;
+  font-size:.7rem;text-transform:uppercase;color:var(--mist);
+}
+.gate .what{
+  display:block;font-weight:700;font-size:1.05rem;line-height:1.5;margin-top:2px;
+  color:var(--ink);overflow-wrap:normal;
+}
+.gate .gate-lead{
+  display:block;margin-top:7px;padding-right:38px;
+  font-size:.78rem;line-height:1.75;color:#6a6878;
+}
+.gate a:nth-child(1) .who{color:var(--rose)}
+.gate a:nth-child(2) .who{color:var(--blue)}
+.gate a:nth-child(3) .who{color:var(--green)}
+
+/* 矢印 */
+.gate .gate-arrow{
+  position:absolute;right:20px;bottom:20px;
+  width:30px;height:30px;border-radius:50%;
+  display:grid;place-items:center;font-size:.9rem;line-height:1;
+  border:1px solid var(--line);color:var(--mist);
+  transition:background .2s, color .2s, border-color .2s, transform .2s;
+}
+.gate a:hover .gate-arrow{transform:translateX(3px);color:var(--white);border-color:transparent}
+.gate a:nth-child(1):hover .gate-arrow{background:var(--grad-warm)}
+.gate a:nth-child(2):hover .gate-arrow{background:var(--blue)}
+.gate a:nth-child(3):hover .gate-arrow{background:var(--green)}
+
+@media (max-width:900px){
+  .gate .wrap{grid-template-columns:1fr;gap:12px;padding-top:22px;padding-bottom:26px}
+  .gate a{padding:18px 18px 18px 24px}
+  .gate .gate-ico{width:42px;height:42px;border-radius:12px;margin-bottom:11px}
+  .gate .gate-ico svg{width:22px;height:22px}
+  .gate .what{font-size:1rem}
+  .gate .gate-arrow{right:16px;bottom:16px}
+}
 
 /* ---------- cards / grids ---------- */
 .grid{display:grid;gap:24px}
