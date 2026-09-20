@@ -670,6 +670,30 @@ button:disabled{opacity:.6;cursor:progress}
 }
 .page-business .biz-subnote p{font-size:.88rem;color:#5d5b6b;line-height:1.95}
 
+/* 対応する専門分野（アイコン付きタイル） */
+.page-business .biz-fields{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:24px;
+}
+@media (max-width:760px){
+  .page-business .biz-fields{grid-template-columns:repeat(auto-fit,minmax(96px,1fr))}
+}
+.page-business .biz-fields li{
+  background:var(--white);border:1px solid var(--line);border-radius:14px;
+  padding:20px 8px 16px;text-align:center;
+}
+.page-business .biz-fields svg{width:30px;height:30px;display:block;margin:0 auto 10px}
+.page-business .biz-fields span{
+  display:block;font-size:.86rem;font-weight:700;color:var(--ink);letter-spacing:.02em;
+}
+.page-business .biz-fields li:nth-child(1) svg{color:var(--blue)}
+.page-business .biz-fields li:nth-child(2) svg{color:var(--purple)}
+.page-business .biz-fields li:nth-child(3) svg{color:var(--orange)}
+.page-business .biz-fields li:nth-child(4) svg{color:var(--rose)}
+.page-business .biz-fields li:nth-child(5) svg{color:var(--green)}
+.page-business .biz-fields-note{
+  margin-top:14px;font-size:.85rem;color:#6a6878;
+}
+
 /* セクション内の小見出し（サービス一覧の上） */
 .page-business .biz-sub-head{
   margin-top:40px;font-size:1.02rem;color:var(--ink);
