@@ -821,9 +821,9 @@ button:disabled{opacity:.6;cursor:progress}
 .biz-services span{display:block;font-size:.85rem;color:#5d5b6b;line-height:1.9}
 
 /* スマホ用の固定相談ボタン */
-.page-business .cta-sticky{display:none}
+.page-business .cta-sticky,.page-students .cta-sticky{display:none}
 @media (max-width:900px){
-  .page-business .cta-sticky{
+  .page-business .cta-sticky,.page-students .cta-sticky{
     display:flex;position:fixed;left:0;right:0;bottom:0;z-index:90;
     padding:10px 16px;
     padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));
@@ -832,14 +832,14 @@ button:disabled{opacity:.6;cursor:progress}
     border-top:1px solid var(--line);
     box-shadow:0 -4px 18px rgba(40,40,60,.06);
   }
-  .page-business .cta-sticky .btn{flex:1;padding:14px 18px;font-size:.92rem}
+  .page-business .cta-sticky,.page-students .cta-sticky .btn{flex:1;padding:14px 18px;font-size:.92rem}
   /* 固定ボタンがフッターを隠さないよう、下に余白を確保する */
-  .page-business .site-footer{
+  .page-business .site-footer,.page-students .site-footer{
     padding-bottom:calc(72px + env(safe-area-inset-bottom,0px));
   }
 }
 @media (max-width:900px) and (prefers-reduced-motion: reduce){
-  .page-business .cta-sticky{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--paper)}
+  .page-business .cta-sticky,.page-students .cta-sticky{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--paper)}
 }
 
 /* 教育機関向け：資料ダウンロード誘導ブロック */
@@ -961,3 +961,19 @@ button:disabled{opacity:.6;cursor:progress}
 
 /* 規程類の制定日・改定日 */
 .policy-date{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);font-size:.88rem;color:var(--mist)}
+
+/* ---- 学生ページ ---- */
+.page-students{--lane:#e8467c;--lane2:#f0862f;--lane-bg:#fdeef4}
+/* 費用についての説明（相談前にいちばん気になる点なので、独立したカードで見せる） */
+.free-note{max-width:44em;border:1.5px solid var(--rose);box-shadow:0 8px 24px rgba(232,70,124,.12)}
+.free-note h2{font-family:var(--serif);font-weight:700;font-size:1.2rem;color:var(--ink);line-height:1.6;margin-bottom:12px}
+.free-note p{font-size:.94rem}
+.free-note p + p{margin-top:1em}
+.free-note .note{margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
+/* 支援の3ステップに付けるアイコン */
+.step-ico{width:48px;height:48px;border-radius:14px;margin-bottom:12px}
+.step-ico svg{width:26px;height:26px}
+/* 3ステップのアイコンを、カードごとのタグの色に合わせる */
+.page-students .grid .card.lane:nth-child(1){--lane:#e8467c;--lane-bg:#fdeef4}
+.page-students .grid .card.lane:nth-child(2){--lane:#f0862f;--lane-bg:#fef3e8}
+.page-students .grid .card.lane:nth-child(3){--lane:#2bb673;--lane-bg:#e8f7ef}
