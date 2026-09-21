@@ -923,15 +923,19 @@ button:disabled{opacity:.6;cursor:progress}
 .lane-themed .biz-sublink a{color:var(--lane)}
 .lane-themed .card ul.plain li::before{color:var(--lane)}
 
+.hero-head{display:flex;align-items:center;gap:15px}
+.hero-head-txt{min-width:0}
+.hero-head-txt .biz-service-name{margin-top:6px}
 .hero-ico{
-  display:grid;place-items:center;width:62px;height:62px;border-radius:18px;
+  flex:none;display:grid;place-items:center;width:58px;height:58px;border-radius:17px;
   background:var(--lane-bg);color:var(--lane);border:1.5px solid var(--lane);
-  margin-bottom:18px;box-shadow:0 8px 20px rgba(40,40,60,.10);
+  box-shadow:0 8px 20px rgba(40,40,60,.10);
 }
-.hero-ico svg{width:32px;height:32px}
+.hero-ico svg{width:30px;height:30px}
 @media (max-width:520px){
-  .hero-ico{width:52px;height:52px;border-radius:15px;margin-bottom:14px}
-  .hero-ico svg{width:27px;height:27px}
+  .hero-head{gap:12px}
+  .hero-ico{width:50px;height:50px;border-radius:15px}
+  .hero-ico svg{width:26px;height:26px}
 }
 
 /* サービス一覧：項目ごとのアイコン */
@@ -954,3 +958,6 @@ button:disabled{opacity:.6;cursor:progress}
   content:"";position:absolute;left:0;right:0;bottom:0;height:4px;border-radius:99px;
   background:linear-gradient(135deg,var(--lane),var(--lane2));
 }
+
+/* 規程類の制定日・改定日 */
+.policy-date{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);font-size:.88rem;color:var(--mist)}
