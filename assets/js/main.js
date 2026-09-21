@@ -248,3 +248,35 @@ function oymDownloadInit(linkId) {
   link.textContent = '資料ダウンロードフォームへ';
   if (note) note.textContent = 'ダウンロード用のリンクの有効期限が切れています。お手数ですが、フォームから再度お申し込みください。';
 }
+
+/* ----------------------------------------------------------------------
+   コラムの横スクロール（TOPページ）
+   左右のボタンで1枚ずつ送ります。端まで来たらボタンを隠します。
+   ボタンが無い環境（スマホなど）でも、指でスワイプすれば操作できます。
+   ---------------------------------------------------------------------- */
+(function () {
+  var strips = document.querySelectorAll('[data-col-strip]');
+  Array.prototype.forEach.call(strips, function (strip) {
+    var track = strip.querySelector('[data-col-track]');
+    var prev  = strip.querySelector('[data-col-prev]');
+    var next  = strip.querySelector('[data-col-next]');
+    if (!track || !prev || !next) return;
+
+    function step() {
+      var first = track.querySelector('li');
+      if (!first) return 320;
+      var gap = parseFloat(getComputedStyle(track).columnGap || '20') || 20;
+      return first.getBoundingClientRect().width + gap;
+    }
+    function update() {
+      var max = track.scrollWidth - track.clientWidth;
+      prev.hidden = track.scrollLeft <= 2;
+      next.hidden = track.scrollLeft >= max - 2;
+    }
+    prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function () { track.scrollBy({ left:  step(), behavior: 'smooth' }); });
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  });
+})();
