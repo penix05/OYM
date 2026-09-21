@@ -2,6 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://oym.co.jp/</loc><priority>1.0</priority></url>
   <url><loc>https://oym.co.jp/service-school.html</loc><priority>0.9</priority></url>
+  <url><loc>https://oym.co.jp/school-job.html</loc><priority>0.8</priority></url>
+  <url><loc>https://oym.co.jp/school-career.html</loc><priority>0.7</priority></url>
+  <url><loc>https://oym.co.jp/school-event.html</loc><priority>0.6</priority></url>
+  <url><loc>https://oym.co.jp/school-travel.html</loc><priority>0.6</priority></url>
   <url><loc>https://oym.co.jp/service-business.html</loc><priority>0.8</priority></url>
   <url><loc>https://oym.co.jp/service-students.html</loc><priority>0.8</priority></url>
   <url><loc>https://oym.co.jp/business-it.html</loc><priority>0.7</priority></url>

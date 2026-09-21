@@ -700,29 +700,29 @@ button:disabled{opacity:.6;cursor:progress}
 }
 
 /* 特徴を示す短いラベル */
-.page-business .biz-labels{
+.biz-labels{
   display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;
 }
-.page-business .biz-labels li{
+.biz-labels li{
   font-size:.78rem;font-weight:700;letter-spacing:.02em;color:var(--ink);
   border:1px solid var(--line);background:var(--white);
   border-radius:999px;padding:7px 14px;line-height:1.5;
 }
 
 /* 冒頭の補助リンク */
-.page-business .biz-sublink{margin-top:14px;font-size:.88rem}
-.page-business .biz-sublink a{color:var(--blue);text-underline-offset:3px}
+.biz-sublink{margin-top:14px;font-size:.88rem}
+.biz-sublink a{color:var(--blue);text-underline-offset:3px}
 
 /* 補足（主な特徴3項目より控えめに見せる） */
-.page-business .biz-subnote{
+.biz-subnote{
   margin-top:30px;padding:22px 24px;
   background:var(--white);border:1px dashed var(--line);border-radius:12px;
   max-width:52em;
 }
-.page-business .biz-subnote h3{
+.biz-subnote h3{
   font-size:.95rem;color:var(--ink);margin-bottom:8px;
 }
-.page-business .biz-subnote p{font-size:.88rem;color:#5d5b6b;line-height:1.95}
+.biz-subnote p{font-size:.88rem;color:#5d5b6b;line-height:1.95}
 
 /* 対応する専門分野（カテゴリ別の一覧）
    分野は20以上に増えていく前提。カテゴリの箱を並べ、その中に分野を
@@ -795,30 +795,30 @@ button:disabled{opacity:.6;cursor:progress}
 .page-business .biz-cat:nth-child(4) h3 svg{color:var(--rose)}
 .page-business .biz-cat:nth-child(5) h3 svg{color:var(--red-dark)}
 .page-business .biz-cat:nth-child(6) h3 svg{color:var(--orange)}
-.page-business .biz-fields-note{
+.biz-fields-note{
   margin-top:16px;font-size:.85rem;line-height:1.85;color:#6a6878;
 }
 
 /* 分野別ページのH1。職種名が単語の途中で折り返さないよう、
    まとまりごとに nowrap を指定する（各まとまりは狭い画面幅より短い）。 */
-.page-business .page-hero h1 .nowrap{white-space:nowrap}
+.page-hero h1 .nowrap{white-space:nowrap}
 
 /* セクション内の小見出し（サービス一覧の上） */
-.page-business .biz-sub-head{
+.biz-sub-head{
   margin-top:40px;font-size:1.02rem;color:var(--ink);
 }
 
 /* ご利用いただけるサービス */
-.page-business .biz-services{
+.biz-services{
   display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px;
 }
-@media (max-width:760px){.page-business .biz-services{grid-template-columns:1fr}}
-.page-business .biz-services li{
+@media (max-width:760px){.biz-services{grid-template-columns:1fr}}
+.biz-services li{
   background:var(--white);border:1px solid var(--line);border-radius:12px;
   padding:16px 18px;
 }
-.page-business .biz-services strong{display:block;font-size:.95rem;margin-bottom:5px}
-.page-business .biz-services span{display:block;font-size:.85rem;color:#5d5b6b;line-height:1.9}
+.biz-services strong{display:block;font-size:.95rem;margin-bottom:5px}
+.biz-services span{display:block;font-size:.85rem;color:#5d5b6b;line-height:1.9}
 
 /* スマホ用の固定相談ボタン */
 .page-business .cta-sticky{display:none}
@@ -841,3 +841,10 @@ button:disabled{opacity:.6;cursor:progress}
 @media (max-width:900px) and (prefers-reduced-motion: reduce){
   .page-business .cta-sticky{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--paper)}
 }
+
+/* 教育機関向け：資料ダウンロード誘導ブロック */
+.dl-promo{border:1.5px solid var(--blue);box-shadow:0 6px 20px rgba(47,125,209,.14)}
+.dl-promo h3{margin:0 0 10px}
+.dl-promo ul.plain{margin:0 0 18px}
+.dl-promo .btn{width:100%;text-align:center}
+.dl-promo .note{margin-top:12px}
