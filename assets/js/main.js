@@ -264,7 +264,8 @@ function oymDownloadInit(linkId) {
      ・端まで来たら先頭に戻る
    ---------------------------------------------------------------------- */
 (function () {
-  var INTERVAL = 7000;
+  var INTERVAL = 5000;   // 送る間隔
+  var FIRST    = 1200;   // 帯が画面に入ってから、最初の1枚を送るまで
   var strips = document.querySelectorAll('[data-col-strip]');
 
   Array.prototype.forEach.call(strips, function (strip) {
@@ -297,10 +298,10 @@ function oymDownloadInit(linkId) {
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) return;
 
-    var timer = null, paused = false, stopped = false, visible = true;
+    var timer = null, paused = false, stopped = false, visible = true, greeted = false;
 
     function tick() {
-      if (paused || stopped || !visible || document.hidden) return;
+      if (paused || hovering || stopped || !visible || document.hidden) return;
       // 読み込み直後など、まだ送る余地がないときは何もしない（次の回で再判定する）
       if (maxScroll() <= 2) return;
       if (track.scrollLeft >= maxScroll() - 2) {
@@ -312,10 +313,25 @@ function oymDownloadInit(linkId) {
     function start() { if (!timer && !stopped) timer = setInterval(tick, INTERVAL); }
     function stop()  { stopped = true; if (timer) { clearInterval(timer); timer = null; } }
 
-    strip.addEventListener('mouseenter', function () { paused = true; });
-    strip.addEventListener('mouseleave', function () { paused = false; });
-    strip.addEventListener('focusin',    function () { paused = true; });
-    strip.addEventListener('focusout',   function () { paused = false; });
+    /* カーソルが帯の上に「置かれているだけ」では止めない。
+       ページを縦にスクロールすると、その場に残ったカーソルの下を帯が通り過ぎる。
+       このとき Chrome などは座標の変わらない pointermove を出すため、
+       それを hover と見なすと、何もしていないのに止まってしまう。
+       実際にカーソルが動いたときだけ、読んでいる／狙っていると判断する。 */
+    var hovering = false, lastX = null, lastY = null;
+    strip.addEventListener('pointermove', function (e) {
+      if (e.pointerType && e.pointerType !== 'mouse') return;
+      if (lastX !== null && (Math.abs(e.clientX - lastX) > 2 || Math.abs(e.clientY - lastY) > 2)) {
+        hovering = true;
+      }
+      lastX = e.clientX; lastY = e.clientY;
+    }, { passive: true });
+    strip.addEventListener('pointerleave', function () {
+      hovering = false; lastX = null; lastY = null;
+    }, { passive: true });
+
+    strip.addEventListener('focusin',  function () { paused = true; });
+    strip.addEventListener('focusout', function () { paused = false; });
 
     /* 利用者が「この帯を自分で横に動かした」ときだけ自動送りをやめる。
        ページを縦にスクロールしただけ、カードを押しただけでは止めない。 */
@@ -345,6 +361,11 @@ function oymDownloadInit(linkId) {
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {
         visible = entries[0].isIntersecting;
+        // 帯が画面に入ったら、最初の1枚は早めに送る（動くことが伝わるように）
+        if (visible && !greeted && !stopped) {
+          greeted = true;
+          setTimeout(tick, FIRST);
+        }
       }, { threshold: 0.25 }).observe(strip);
     }
     start();
