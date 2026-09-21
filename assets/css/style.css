@@ -821,9 +821,9 @@ button:disabled{opacity:.6;cursor:progress}
 .biz-services span{display:block;font-size:.85rem;color:#5d5b6b;line-height:1.9}
 
 /* スマホ用の固定相談ボタン */
-.page-business .cta-sticky,.page-students .cta-sticky{display:none}
+.page-business .cta-sticky,.page-students .cta-sticky,.page-column .cta-sticky{display:none}
 @media (max-width:900px){
-  .page-business .cta-sticky,.page-students .cta-sticky{
+  .page-business .cta-sticky,.page-students .cta-sticky,.page-column .cta-sticky{
     display:flex;position:fixed;left:0;right:0;bottom:0;z-index:90;
     padding:10px 16px;
     padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));
@@ -832,14 +832,14 @@ button:disabled{opacity:.6;cursor:progress}
     border-top:1px solid var(--line);
     box-shadow:0 -4px 18px rgba(40,40,60,.06);
   }
-  .page-business .cta-sticky,.page-students .cta-sticky .btn{flex:1;padding:14px 18px;font-size:.92rem}
+  .page-business .cta-sticky .btn,.page-students .cta-sticky .btn,.page-column .cta-sticky .btn{flex:1;padding:14px 18px;font-size:.92rem}
   /* 固定ボタンがフッターを隠さないよう、下に余白を確保する */
-  .page-business .site-footer,.page-students .site-footer{
+  .page-business .site-footer,.page-students .site-footer,.page-column .site-footer{
     padding-bottom:calc(72px + env(safe-area-inset-bottom,0px));
   }
 }
 @media (max-width:900px) and (prefers-reduced-motion: reduce){
-  .page-business .cta-sticky,.page-students .cta-sticky{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--paper)}
+  .page-business .cta-sticky,.page-students .cta-sticky,.page-column .cta-sticky{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--paper)}
 }
 
 /* 教育機関向け：資料ダウンロード誘導ブロック */
