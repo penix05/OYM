@@ -1110,9 +1110,3 @@ button:disabled{opacity:.6;cursor:progress}
 /* コラム記事の挿絵 */
 .article-figure{margin:0;border-radius:var(--radius);overflow:hidden;box-shadow:0 10px 30px rgba(40,40,60,.1)}
 .article-figure img{width:100%;height:auto;display:block}
-
-/* 文章とカードを左右に並べる箇所。文章が短く上に寄ると余白が目立つため、
-   2列になる幅では上下中央に揃える */
-@media (min-width:641px){
-  .grid.cols-2.split-lead{align-items:center}
-}

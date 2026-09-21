@@ -7,6 +7,7 @@
   <url><loc>https://oym.co.jp/school-event.html</loc><priority>0.6</priority></url>
   <url><loc>https://oym.co.jp/school-travel.html</loc><priority>0.6</priority></url>
   <url><loc>https://oym.co.jp/column/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://oym.co.jp/column/hoikushi-shinsotsu.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
   <url><loc>https://oym.co.jp/column/sekokanri-shinsotsu.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
   <url><loc>https://oym.co.jp/column/shinsotsu-oubo-atsumaranai.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
   <url><loc>https://oym.co.jp/service-business.html</loc><priority>0.8</priority></url>
