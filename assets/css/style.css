@@ -1096,8 +1096,11 @@ button:disabled{opacity:.6;cursor:progress}
 .top-col-txt{flex:1;min-width:0}
 .top-col-txt h3{font-family:var(--serif);font-weight:700;font-size:1.05rem;line-height:1.6;
   color:var(--ink);margin:6px 0 0}
-.top-col a{text-decoration:none;color:inherit}
+.top-col,.top-col a{text-decoration:none;color:inherit}
+.top-col h3,.top-col p{text-decoration:none}
 .top-col .col-arrow{flex:none;width:30px;height:30px;font-size:.85rem}
 @media (max-width:640px){
   .top-col{flex-direction:column;align-items:flex-start;gap:14px;padding:22px 20px}
 }
+.top-col-lead{font-size:.88rem;color:#5d5b6b;margin-top:6px}
+.top-col .col-more{cursor:pointer}
