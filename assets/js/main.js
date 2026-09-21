@@ -37,11 +37,16 @@ document.addEventListener('DOMContentLoaded', function () {
       t.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
   }
-  // scroll reveal
+  /* スクロールに合わせた表示。
+     かつては threshold（要素の何割が見えたか）で判定していたが、
+     画面より背の高い要素は、どこまでスクロールしても割合が閾値に届かず、
+     永久に表示されないままだった（記事本文がまさにこれに当たる）。
+     要素が少しでも画面に入ったかどうかで判定する。 */
+  window.__oymReveal = true;
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold: 0.12 });
+    }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
     document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
   } else {
     document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });

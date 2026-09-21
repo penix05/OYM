@@ -639,9 +639,13 @@ ul,ol{list-style:none}
 .footer-bottom .wrap{display:flex;justify-content:space-between;gap:16px;padding:18px 24px;font-size:.78rem;color:#8b88a0;flex-wrap:wrap}
 
 /* reveal on scroll */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+/* JSが動いていると確認できたときだけ隠す。
+   スクリプトが読み込めない・途中で止まった場合は、本文が消えるより
+   最初から見えているほうが安全なため、html.js を付け外しして制御する。 */
+html.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+html.js .reveal.in{opacity:1;transform:none}
 .reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){html.js .reveal{opacity:1;transform:none}}
 
 /* 就活カフェ 日程チップ */
 .cafe-dates{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
@@ -689,7 +693,6 @@ button[aria-busy="true"],
 button:disabled{opacity:.6;cursor:progress}
 
 /* JavaScriptが無効・読み込み失敗でも本文が消えないようにする */
-.no-js .reveal{opacity:1;transform:none}
 
 /* =============================================================
    企業向けページ（service-business.html）専用
