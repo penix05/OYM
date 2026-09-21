@@ -723,28 +723,42 @@ button:disabled{opacity:.6;cursor:progress}
 }
 .page-business .biz-subnote p{font-size:.88rem;color:#5d5b6b;line-height:1.95}
 
-/* 対応する専門分野（アイコン付きタイル） */
-.page-business .biz-fields{
-  display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:24px;
+/* 対応する専門分野（カテゴリ別の一覧）
+   分野は20以上に増えていく前提。カテゴリの箱を並べ、その中に分野を
+   タグとして流し込む形にして、項目が増えても崩れないようにしている。
+   詳細ページがある分野だけリンクにする（.has-page）。 */
+.page-business .biz-cats{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:26px;
 }
-@media (max-width:760px){
-  .page-business .biz-fields{grid-template-columns:repeat(auto-fit,minmax(96px,1fr))}
-}
-.page-business .biz-fields li{
+@media (max-width:860px){.page-business .biz-cats{grid-template-columns:1fr}}
+.page-business .biz-cat{
   background:var(--white);border:1px solid var(--line);border-radius:14px;
-  padding:20px 8px 16px;text-align:center;
+  padding:20px 22px;
 }
-.page-business .biz-fields svg{width:30px;height:30px;display:block;margin:0 auto 10px}
-.page-business .biz-fields span{
-  display:block;font-size:.86rem;font-weight:700;color:var(--ink);letter-spacing:.02em;
+.page-business .biz-cat h3{
+  display:flex;align-items:center;gap:10px;
+  font-size:.96rem;color:var(--ink);margin-bottom:13px;
 }
-.page-business .biz-fields li:nth-child(1) svg{color:var(--blue)}
-.page-business .biz-fields li:nth-child(2) svg{color:var(--purple)}
-.page-business .biz-fields li:nth-child(3) svg{color:var(--orange)}
-.page-business .biz-fields li:nth-child(4) svg{color:var(--rose)}
-.page-business .biz-fields li:nth-child(5) svg{color:var(--green)}
+.page-business .biz-cat h3 svg{width:22px;height:22px;flex:none}
+.page-business .biz-cat ul{display:flex;flex-wrap:wrap;gap:8px}
+.page-business .biz-cat li{
+  font-size:.79rem;font-weight:700;line-height:1.5;color:#5d5b6b;
+  border:1px solid var(--line);background:var(--paper);
+  border-radius:999px;padding:6px 13px;
+}
+.page-business .biz-cat li.has-page{border-color:rgba(47,125,209,.4);background:rgba(47,125,209,.07)}
+.page-business .biz-cat li.has-page a{
+  display:flex;align-items:center;gap:5px;color:var(--blue);text-decoration:none;
+}
+.page-business .biz-cat li.has-page a:hover{text-decoration:underline;text-underline-offset:3px}
+.page-business .biz-cat:nth-child(1) h3 svg{color:var(--blue)}
+.page-business .biz-cat:nth-child(2) h3 svg{color:var(--green)}
+.page-business .biz-cat:nth-child(3) h3 svg{color:var(--purple)}
+.page-business .biz-cat:nth-child(4) h3 svg{color:var(--rose)}
+.page-business .biz-cat:nth-child(5) h3 svg{color:var(--red-dark)}
+.page-business .biz-cat:nth-child(6) h3 svg{color:var(--orange)}
 .page-business .biz-fields-note{
-  margin-top:14px;font-size:.85rem;color:#6a6878;
+  margin-top:16px;font-size:.85rem;line-height:1.85;color:#6a6878;
 }
 
 /* セクション内の小見出し（サービス一覧の上） */
