@@ -746,11 +746,48 @@ button:disabled{opacity:.6;cursor:progress}
   border:1px solid var(--line);background:var(--paper);
   border-radius:999px;padding:6px 13px;
 }
-.page-business .biz-cat li.has-page{border-color:rgba(47,125,209,.4);background:rgba(47,125,209,.07)}
-.page-business .biz-cat li.has-page a{
-  display:flex;align-items:center;gap:5px;color:var(--blue);text-decoration:none;
+/* 詳細ページがある分野は、ボタンだと一目でわかるようにする。
+   枠線を太く・影を付け、右端に塗りつぶしの矢印を置く。 */
+.page-business .biz-cat li.has-page{
+  padding:0;border:1.5px solid var(--blue);background:var(--white);
+  box-shadow:0 2px 6px rgba(47,125,209,.16);
+  transition:background .18s, box-shadow .18s, transform .18s;
 }
-.page-business .biz-cat li.has-page a:hover{text-decoration:underline;text-underline-offset:3px}
+.page-business .biz-cat li.has-page a{
+  display:flex;align-items:center;gap:8px;
+  padding:6px 8px 6px 14px;
+  color:var(--blue);text-decoration:none;
+}
+.page-business .biz-cat li.has-page a span{
+  display:grid;place-items:center;flex:none;
+  width:19px;height:19px;border-radius:50%;
+  background:var(--blue);color:var(--white);
+  font-size:.66rem;line-height:1;
+  transition:background .18s, color .18s;
+}
+.page-business .biz-cat li.has-page:hover,
+.page-business .biz-cat li.has-page:focus-within{
+  background:var(--blue);box-shadow:0 6px 16px rgba(47,125,209,.3);transform:translateY(-1px);
+}
+.page-business .biz-cat li.has-page:hover a,
+.page-business .biz-cat li.has-page:focus-within a{color:var(--white)}
+.page-business .biz-cat li.has-page:hover a span,
+.page-business .biz-cat li.has-page:focus-within a span{background:var(--white);color:var(--blue)}
+
+/* 一覧の上に置く案内 */
+.page-business .biz-fields-lead{
+  margin-top:18px;font-size:.85rem;line-height:1.85;color:#5d5b6b;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.page-business .biz-fields-lead .sample{
+  display:inline-flex;align-items:center;gap:7px;
+  border:1.5px solid var(--blue);background:var(--white);border-radius:999px;
+  padding:4px 8px 4px 12px;font-size:.78rem;font-weight:700;color:var(--blue);
+}
+.page-business .biz-fields-lead .sample span{
+  display:grid;place-items:center;width:17px;height:17px;border-radius:50%;
+  background:var(--blue);color:var(--white);font-size:.6rem;line-height:1;
+}
 .page-business .biz-cat:nth-child(1) h3 svg{color:var(--blue)}
 .page-business .biz-cat:nth-child(2) h3 svg{color:var(--green)}
 .page-business .biz-cat:nth-child(3) h3 svg{color:var(--purple)}
