@@ -798,6 +798,10 @@ button:disabled{opacity:.6;cursor:progress}
   margin-top:16px;font-size:.85rem;line-height:1.85;color:#6a6878;
 }
 
+/* 分野別ページのH1。職種名が単語の途中で折り返さないよう、
+   まとまりごとに nowrap を指定する（各まとまりは狭い画面幅より短い）。 */
+.page-business .page-hero h1 .nowrap{white-space:nowrap}
+
 /* セクション内の小見出し（サービス一覧の上） */
 .page-business .biz-sub-head{
   margin-top:40px;font-size:1.02rem;color:var(--ink);
