@@ -848,3 +848,109 @@ button:disabled{opacity:.6;cursor:progress}
 .dl-promo ul.plain{margin:0 0 18px}
 .dl-promo .btn{width:100%;text-align:center}
 .dl-promo .note{margin-top:12px}
+
+/* =========================================================
+   教育機関向け：4つの支援領域を色とアイコンで描き分ける
+   ---------------------------------------------------------
+   --lane / --lane2 … 領域ごとのアクセント色（グラデーション用）
+   --lane-bg        … アイコン下地の淡色
+   ========================================================= */
+.lane-job{--lane:#e8467c;--lane2:#f0862f;--lane-bg:#fdeef4;--lane-glow1:rgba(232,70,124,.24);--lane-glow2:rgba(240,134,47,.2)}
+.lane-career{--lane:#f0862f;--lane2:#f2c04c;--lane-bg:#fef3e8;--lane-glow1:rgba(240,134,47,.26);--lane-glow2:rgba(242,192,76,.28)}
+.lane-event{--lane:#2bb673;--lane2:#2f7dd1;--lane-bg:#e8f7ef;--lane-glow1:rgba(43,182,115,.24);--lane-glow2:rgba(47,125,209,.2)}
+.lane-travel{--lane:#2f7dd1;--lane2:#7b5ea7;--lane-bg:#eaf2fc;--lane-glow1:rgba(47,125,209,.24);--lane-glow2:rgba(123,94,167,.22)}
+
+/* ---- 教育機関ページ：サービス4カード ---- */
+.svc-lanes .svc-lane:nth-of-type(1){--lane:#e8467c;--lane2:#f0862f;--lane-bg:#fdeef4}
+.svc-lanes .svc-lane:nth-of-type(2){--lane:#f0862f;--lane2:#f2c04c;--lane-bg:#fef3e8}
+.svc-lanes .svc-lane:nth-of-type(3){--lane:#2bb673;--lane2:#2f7dd1;--lane-bg:#e8f7ef}
+.svc-lanes .svc-lane:nth-of-type(4){--lane:#2f7dd1;--lane2:#7b5ea7;--lane-bg:#eaf2fc}
+
+.svc-lane{transition:transform .2s, box-shadow .2s, border-color .2s}
+.card.lane.svc-lane::before{background:linear-gradient(135deg,var(--lane),var(--lane2))}
+.svc-lane .tag{color:var(--lane)}
+.svc-lane ul.plain li::before{color:var(--lane)}
+.svc-lane:hover{transform:translateY(-3px);border-color:var(--lane);box-shadow:0 16px 36px rgba(40,40,60,.13)}
+
+.svc-head{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.svc-title{min-width:0}
+.svc-title .tag{margin-bottom:2px}
+.svc-title h3{margin-bottom:0}
+.svc-ico{
+  flex:none;display:grid;place-items:center;width:58px;height:58px;border-radius:17px;
+  background:var(--lane-bg);color:var(--lane);border:1.5px solid var(--lane);
+  transition:background .2s, color .2s, transform .2s;
+}
+.svc-ico svg{width:30px;height:30px}
+.svc-lane:hover .svc-ico{background:var(--lane);color:var(--white);transform:scale(1.04)}
+
+/* カード下部の「詳しく見る」をボタンとして見せる */
+.svc-more{margin-top:20px}
+.svc-more a{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:11px 14px 11px 20px;border-radius:999px;
+  border:1.5px solid var(--lane);background:var(--white);color:var(--lane);
+  font-weight:700;font-size:.92rem;text-decoration:none;line-height:1.4;
+  box-shadow:0 2px 8px rgba(40,40,60,.08);
+  transition:background .18s, color .18s, box-shadow .18s, transform .18s;
+}
+.svc-more a span{
+  display:grid;place-items:center;flex:none;width:22px;height:22px;border-radius:50%;
+  background:var(--lane);color:var(--white);font-size:.72rem;line-height:1;
+  transition:background .18s, color .18s, transform .18s;
+}
+.svc-lane:hover .svc-more a,.svc-more a:hover,.svc-more a:focus-visible{
+  background:var(--lane);color:var(--white);
+  box-shadow:0 10px 22px rgba(40,40,60,.22);transform:translateY(-1px);
+}
+.svc-lane:hover .svc-more a span,.svc-more a:hover span,.svc-more a:focus-visible span{
+  background:var(--white);color:var(--lane);transform:translateX(2px);
+}
+@media (max-width:520px){
+  .svc-head{gap:12px}
+  .svc-ico{width:48px;height:48px;border-radius:14px}
+  .svc-ico svg{width:25px;height:25px}
+  .svc-more a{width:100%;justify-content:space-between;font-size:.88rem}
+}
+
+/* ---- 詳細ページ：領域ごとに配色を切り替える ---- */
+.lane-themed .page-hero::before{background:radial-gradient(circle,var(--lane-glow1),transparent 62%)}
+.lane-themed .page-hero::after{background:radial-gradient(circle,var(--lane-glow2),transparent 62%)}
+.lane-themed .page-hero .kicker{background-image:linear-gradient(90deg,var(--lane),var(--lane2))}
+.lane-themed .sec-head .eyebrow{background-image:linear-gradient(90deg,var(--lane),var(--lane2))}
+.lane-themed .issues li::before{background-image:linear-gradient(135deg,var(--lane),var(--lane2))}
+.lane-themed .biz-labels li{border-color:var(--lane)}
+.lane-themed .biz-sublink a{color:var(--lane)}
+.lane-themed .card ul.plain li::before{color:var(--lane)}
+
+.hero-ico{
+  display:grid;place-items:center;width:62px;height:62px;border-radius:18px;
+  background:var(--lane-bg);color:var(--lane);border:1.5px solid var(--lane);
+  margin-bottom:18px;box-shadow:0 8px 20px rgba(40,40,60,.10);
+}
+.hero-ico svg{width:32px;height:32px}
+@media (max-width:520px){
+  .hero-ico{width:52px;height:52px;border-radius:15px;margin-bottom:14px}
+  .hero-ico svg{width:27px;height:27px}
+}
+
+/* サービス一覧：項目ごとのアイコン */
+.svc-list li{display:flex;align-items:flex-start;gap:14px}
+.svc-list li > div{min-width:0}
+.svc-list .svc-item-ico{
+  flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:12px;
+  background:var(--lane-bg);color:var(--lane);margin-top:1px;
+}
+.svc-list .svc-item-ico svg{width:22px;height:22px}
+@media (max-width:520px){
+  .svc-list li{gap:12px}
+  .svc-list .svc-item-ico{width:36px;height:36px;border-radius:11px}
+  .svc-list .svc-item-ico svg{width:20px;height:20px}
+}
+
+/* 特徴カード：見出しにレーン色の下線 */
+.svc-feats .card h3{display:inline-block;position:relative;padding-bottom:9px;margin-bottom:12px}
+.svc-feats .card h3::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:4px;border-radius:99px;
+  background:linear-gradient(135deg,var(--lane),var(--lane2));
+}
