@@ -251,16 +251,27 @@ function oymDownloadInit(linkId) {
 
 /* ----------------------------------------------------------------------
    コラムの横スクロール（TOPページ）
-   左右のボタンで1枚ずつ送ります。端まで来たらボタンを隠します。
-   ボタンが無い環境（スマホなど）でも、指でスワイプすれば操作できます。
+
+   左右のボタンで1枚ずつ送ります。ボタンが無い環境（スマホなど）でも、
+   指でスワイプすれば操作できます。
+
+   自動送りは、次の条件で動かします。
+     ・7秒ごとに1枚ずつ進む（連続して動かさない）
+     ・カーソルを乗せている間、キーボードで操作している間は止まる
+     ・利用者が自分で操作したら、そこで自動送りをやめる
+     ・画面に入っていないときは動かさない
+     ・端末の「視差効果を減らす」設定が入っていれば、最初から動かさない
+     ・端まで来たら先頭に戻る
    ---------------------------------------------------------------------- */
 (function () {
+  var INTERVAL = 7000;
   var strips = document.querySelectorAll('[data-col-strip]');
+
   Array.prototype.forEach.call(strips, function (strip) {
     var track = strip.querySelector('[data-col-track]');
     var prev  = strip.querySelector('[data-col-prev]');
     var next  = strip.querySelector('[data-col-next]');
-    if (!track || !prev || !next) return;
+    if (!track) return;
 
     function step() {
       var first = track.querySelector('li');
@@ -268,15 +279,51 @@ function oymDownloadInit(linkId) {
       var gap = parseFloat(getComputedStyle(track).columnGap || '20') || 20;
       return first.getBoundingClientRect().width + gap;
     }
+    function maxScroll() { return track.scrollWidth - track.clientWidth; }
     function update() {
-      var max = track.scrollWidth - track.clientWidth;
+      if (!prev || !next) return;
       prev.hidden = track.scrollLeft <= 2;
-      next.hidden = track.scrollLeft >= max - 2;
+      next.hidden = track.scrollLeft >= maxScroll() - 2;
     }
-    prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
-    next.addEventListener('click', function () { track.scrollBy({ left:  step(), behavior: 'smooth' }); });
+    function move(dir) { track.scrollBy({ left: dir * step(), behavior: 'smooth' }); }
+
+    if (prev) prev.addEventListener('click', function () { stop(); move(-1); });
+    if (next) next.addEventListener('click', function () { stop(); move(1); });
     track.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();
+
+    /* ---- ここから自動送り ---- */
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || maxScroll() <= 2) return;
+
+    var timer = null, paused = false, stopped = false, visible = true;
+
+    function tick() {
+      if (paused || stopped || !visible || document.hidden) return;
+      if (track.scrollLeft >= maxScroll() - 2) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });   // 端まで来たら先頭へ
+      } else {
+        move(1);
+      }
+    }
+    function start() { if (!timer && !stopped) timer = setInterval(tick, INTERVAL); }
+    function stop()  { stopped = true; if (timer) { clearInterval(timer); timer = null; } }
+
+    strip.addEventListener('mouseenter', function () { paused = true; });
+    strip.addEventListener('mouseleave', function () { paused = false; });
+    strip.addEventListener('focusin',    function () { paused = true; });
+    strip.addEventListener('focusout',   function () { paused = false; });
+    // 利用者が自分でスワイプしたら、自動送りはやめる
+    track.addEventListener('pointerdown', stop);
+    track.addEventListener('wheel', stop, { passive: true });
+    track.addEventListener('keydown', stop);
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+      }, { threshold: 0.25 }).observe(strip);
+    }
+    start();
   });
 })();
