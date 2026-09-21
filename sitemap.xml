@@ -7,6 +7,8 @@
   <url><loc>https://oym.co.jp/school-event.html</loc><priority>0.6</priority></url>
   <url><loc>https://oym.co.jp/school-travel.html</loc><priority>0.6</priority></url>
   <url><loc>https://oym.co.jp/column/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://oym.co.jp/column/eizo-nyusha-mae.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://oym.co.jp/column/apparel-kikaku-seisan.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
   <url><loc>https://oym.co.jp/column/it-mikeiken-ka.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
   <url><loc>https://oym.co.jp/column/portfolio-mikata.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
   <url><loc>https://oym.co.jp/column/hoikushi-shinsotsu.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>

@@ -1161,3 +1161,8 @@ button:disabled{opacity:.6;cursor:progress}
 /* コラム記事の挿絵 */
 .article-figure{margin:0;border-radius:var(--radius);overflow:hidden;box-shadow:0 10px 30px rgba(40,40,60,.1)}
 .article-figure img{width:100%;height:auto;display:block}
+/* 挿絵がまだ用意できていない記事のサムネイル代替 */
+.col-thumb-blank{display:grid;place-items:center;
+  background:linear-gradient(135deg,#fdeef4 0%,#fef3e8 45%,#eaf2fc 100%)}
+.col-thumb-blank > span{font-family:var(--num);font-weight:600;font-size:1.7rem;
+  letter-spacing:.08em;color:var(--rose);opacity:.65}
