@@ -1104,3 +1104,6 @@ button:disabled{opacity:.6;cursor:progress}
 }
 .top-col-lead{font-size:.88rem;color:#5d5b6b;margin-top:6px}
 .top-col .col-more{cursor:pointer}
+/* コラム記事の挿絵 */
+.article-figure{margin:0;border-radius:var(--radius);overflow:hidden;box-shadow:0 10px 30px rgba(40,40,60,.1)}
+.article-figure img{width:100%;height:auto;display:block}
