@@ -692,8 +692,9 @@ button:disabled{opacity:.6;cursor:progress}
    すべて .page-business で限定しているため、他ページには影響しない。
    ============================================================= */
 
-/* サービス名称（H1の上に置く小さな行） */
-.page-business .biz-service-name{
+/* サービス名称（H1の上に置く小さな行）。
+   企業向け・教育機関向けの両方で使うため、ページ限定にしていない。 */
+.biz-service-name{
   margin-top:10px;font-weight:700;font-size:.92rem;letter-spacing:.02em;
   color:var(--ink);
 }
