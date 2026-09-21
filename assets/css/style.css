@@ -234,7 +234,11 @@ ul,ol{list-style:none}
 .hero h1{overflow-wrap:normal}
 /* 「専門学校へ。」だけは分離させない。
    広い画面では1行に収まり、狭い画面ではこのまとまりごと次の行へ送られる。 */
-.hero h1 .nowrap{white-space:nowrap}
+/* 意味の切れ目で改行させるための補助。ただし画面幅に収まらない場合は
+   body の overflow-wrap:anywhere が働き、はみ出さずに折り返す */
+.nowrap{white-space:nowrap}
+/* 極端に狭い画面では、はみ出すより折り返すほうを優先する */
+@media (max-width:359px){ .nowrap{white-space:normal} }
 .hero-light .hero-logo{width:min(320px,72%);height:auto;margin-bottom:18px;filter:drop-shadow(0 10px 26px rgba(123,94,167,.2))}
 .hero-light .kicker{margin-bottom:14px;text-shadow:0 1px 8px #fff}
 .hero-light h1{color:var(--ink);text-shadow:0 1px 2px #fff,0 0 14px rgba(255,255,255,.95)}
@@ -801,7 +805,6 @@ button:disabled{opacity:.6;cursor:progress}
 
 /* 分野別ページのH1。職種名が単語の途中で折り返さないよう、
    まとまりごとに nowrap を指定する（各まとまりは狭い画面幅より短い）。 */
-.page-hero h1 .nowrap{white-space:nowrap}
 
 /* セクション内の小見出し（サービス一覧の上） */
 .biz-sub-head{
