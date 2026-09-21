@@ -295,12 +295,14 @@ function oymDownloadInit(linkId) {
 
     /* ---- ここから自動送り ---- */
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce || maxScroll() <= 2) return;
+    if (reduce) return;
 
     var timer = null, paused = false, stopped = false, visible = true;
 
     function tick() {
       if (paused || stopped || !visible || document.hidden) return;
+      // 読み込み直後など、まだ送る余地がないときは何もしない（次の回で再判定する）
+      if (maxScroll() <= 2) return;
       if (track.scrollLeft >= maxScroll() - 2) {
         track.scrollTo({ left: 0, behavior: 'smooth' });   // 端まで来たら先頭へ
       } else {
@@ -314,10 +316,31 @@ function oymDownloadInit(linkId) {
     strip.addEventListener('mouseleave', function () { paused = false; });
     strip.addEventListener('focusin',    function () { paused = true; });
     strip.addEventListener('focusout',   function () { paused = false; });
-    // 利用者が自分でスワイプしたら、自動送りはやめる
-    track.addEventListener('pointerdown', stop);
-    track.addEventListener('wheel', stop, { passive: true });
-    track.addEventListener('keydown', stop);
+
+    /* 利用者が「この帯を自分で横に動かした」ときだけ自動送りをやめる。
+       ページを縦にスクロールしただけ、カードを押しただけでは止めない。 */
+    var downX = 0, downY = 0, dragging = false;
+    track.addEventListener('pointerdown', function (e) {
+      downX = e.clientX; downY = e.clientY; dragging = true;
+    }, { passive: true });
+    track.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      var dx = e.clientX - downX, dy = e.clientY - downY;
+      if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) { dragging = false; stop(); }
+    }, { passive: true });
+    track.addEventListener('pointerup',     function () { dragging = false; }, { passive: true });
+    track.addEventListener('pointercancel', function () { dragging = false; }, { passive: true });
+
+    // 横向きのホイール操作だけを「自分で動かした」とみなす
+    track.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) stop();
+    }, { passive: true });
+
+    // 矢印キーなどで横に動かしたときも同じ
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight' ||
+          e.key === 'Home' || e.key === 'End') stop();
+    });
 
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {
