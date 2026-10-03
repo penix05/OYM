@@ -51,6 +51,14 @@ RewriteRule ^(.+/)index\.html$ /$1 [R=301,L]
 # ---------- カスタム404（ステータスコード404を返すために必須） ----------
 ErrorDocument 404 /404.html
 
+# ---------- 公開しないファイル ----------
+# 自動デプロイが使う管理ファイル。転送済みファイルの一覧とハッシュが入っており、
+# サイトの構成が読み取れてしまうため、ブラウザからは見せない。
+# （デプロイはFTPで読み書きするので、この指定の影響を受けない）
+<FilesMatch "^\.ftp-deploy-sync-state\.json$">
+  Require all denied
+</FilesMatch>
+
 # ---------- セキュリティヘッダ ----------
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"

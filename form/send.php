@@ -104,6 +104,20 @@ function oym_header_safe(string $v): string {
     return trim((string)$v);
 }
 
+/**
+ * CSVに書き出す値を、表計算ソフトが数式として解釈しないようにする。
+ * = + - @ やタブ・改行で始まる値は、Excel や Google スプレッドシートが
+ * 数式とみなして実行することがある（CSVインジェクション）。
+ * 先頭にシングルクォートを付けて、文字列として扱わせる。
+ * ※ 電話番号の「+81…」なども '+81… になるが、表示上の問題にとどまる。
+ */
+function oym_csv_safe(string $v): string {
+    if ($v !== '' && preg_match('/^[=+\-@\t\r\n]/', $v)) {
+        return "'" . $v;
+    }
+    return $v;
+}
+
 $formType = oym_post('form_type', 20) === 'download' ? 'download' : 'contact';
 $name     = oym_post('name', 100);
 $org      = oym_post('org', 200);
@@ -226,7 +240,8 @@ if (!empty($cfg['log_file'])) {
     $dir = dirname((string)$cfg['log_file']);
     if (!is_dir($dir)) { @mkdir($dir, 0700, true); }
     if ($fh = @fopen((string)$cfg['log_file'], 'a')) {
-        @fputcsv($fh, array(date('c'), $formType, $audienceLabel, $name, $org, $email, $tel, $message, $_SERVER['REMOTE_ADDR'] ?? ''));
+        $row = array(date('c'), $formType, $audienceLabel, $name, $org, $email, $tel, $message, $_SERVER['REMOTE_ADDR'] ?? '');
+        @fputcsv($fh, array_map('oym_csv_safe', $row));
         @fclose($fh);
     }
 }
