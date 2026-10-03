@@ -134,16 +134,28 @@ function oymValidate(form) {
   return ok;
 }
 
-/* --- reCAPTCHA v3 トークン取得（未設定なら空文字を返す） --- */
+/* --- reCAPTCHA v3 トークン取得（未設定なら空文字を返す） ---
+   reCAPTCHAの api.js は async で読み込んでいるため、ページ表示直後は
+   grecaptcha がまだ存在しないことがある。その場合は最大8秒だけ待つ。
+   時間内に現れなければ空文字を返し、呼び出し側で案内を出す。 */
 function oymRecaptchaToken(cfg, action) {
-  if (!cfg.recaptchaSiteKey || typeof grecaptcha === 'undefined') return Promise.resolve('');
+  if (!cfg.recaptchaSiteKey) return Promise.resolve('');
   return new Promise(function (resolve) {
-    try {
-      grecaptcha.ready(function () {
-        grecaptcha.execute(cfg.recaptchaSiteKey, { action: action || 'submit' })
-          .then(resolve, function () { resolve(''); });
-      });
-    } catch (e) { resolve(''); }
+    var waited = 0;
+    (function waitForGrecaptcha() {
+      if (typeof grecaptcha !== 'undefined' && grecaptcha.execute) {
+        try {
+          grecaptcha.ready(function () {
+            grecaptcha.execute(cfg.recaptchaSiteKey, { action: action || 'submit' })
+              .then(resolve, function () { resolve(''); });
+          });
+        } catch (e) { resolve(''); }
+        return;
+      }
+      if (waited >= 8000) { resolve(''); return; }
+      waited += 100;
+      setTimeout(waitForGrecaptcha, 100);
+    })();
   });
 }
 
@@ -199,6 +211,15 @@ function oymContactInit(redirect, opts) {
     if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); btn.textContent = '送信中…'; }
 
     oymRecaptchaToken(cfg, formType).then(function (token) {
+      // スパム対策を使う設定なのにトークンが取れなかった場合。
+      // そのまま送るとサーバー側で必ず拒否され、連投制限まで消費してしまうので、
+      // 送信せずに「もう一度押してください」と案内する。
+      if (cfg.recaptchaSiteKey && !token) {
+        if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); btn.textContent = btnLabel; }
+        oymFormStatus(form, 'error', 'スパム対策の読み込みが完了していません。数秒おいてから、もう一度「送信する」を押してください。');
+        return null;
+      }
+
       var fd = new FormData(form);
       fd.append('form_type', formType);
       fd.append('page_url', location.href);
@@ -214,6 +235,7 @@ function oymContactInit(redirect, opts) {
           .then(function (data) { return { res: res, data: data }; });
       });
     }).then(function (r) {
+      if (!r) return;  // 上で送信を見送った場合（案内は既に表示済み）
       if (r.res.ok && r.data && r.data.ok !== false) {
         var url = redirect;
         // 資料ダウンロードは、サーバーが発行したワンタイムトークンを完了ページへ引き渡す

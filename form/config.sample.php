@@ -29,9 +29,13 @@ return array(
   //   （その場合も form/logs/.htaccess で直接アクセスは禁止されます）。
   'log_file'      => dirname(__DIR__, 2) . '/form-logs/submissions.csv',
 
-  // reCAPTCHA v3（使わない場合は空文字のまま）
+  // reCAPTCHA v3（使わない場合は空文字のまま。空にすれば検証そのものを止められる）
+  // シークレットキーは https://www.google.com/recaptcha/admin で発行した値。
   'recaptcha_secret'    => '',
-  'recaptcha_min_score' => 0.5,
+  // この点数を下回る送信を拒否する。1.0が人間らしい、0.0がボットらしい。
+  // 0.5は厳しめで、普通のお問い合わせまで弾くことがあるため 0.3 にしている。
+  // 迷惑な送信が増えたら 0.5 に上げる。
+  'recaptcha_min_score' => 0.3,
 
   // 資料ダウンロードのワンタイムURL用の秘密鍵。
   // 必ずランダムな長い文字列に変更してください（例: openssl rand -base64 48）

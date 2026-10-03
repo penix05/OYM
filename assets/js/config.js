@@ -14,11 +14,11 @@ var OYM_FORM = {
        ・WordPress(CF7)を使う場合 : "https://oym.co.jp/wp-json/contact-form-7/v1/contact-forms/123/feedback" */
   endpoint: "form/send.php",
 
-  /* reCAPTCHA v3 のサイトキー（公開してよい値）。
-     空のままならreCAPTCHAなしで動作します。
-     設定する場合は contact.html / download.html の
-     <script src="https://www.google.com/recaptcha/api.js?render=..."> も有効化してください。 */
-  recaptchaSiteKey: "",
+  /* reCAPTCHA v3 のサイトキー（公開してよい値。HTMLに埋め込まれます）。
+     空にするとブラウザ側はトークンを送らなくなります。
+     ※ 対になる「シークレットキー」はサーバー上の form/config.php に置きます。
+        このファイルはブラウザから丸ごと読めるので、絶対に書かないこと。 */
+  recaptchaSiteKey: "6LcaId0tAAAAADbezCcaSzWSl9AQg3hR618Odc8a",
 
   /* 送信に失敗したときに案内するメールアドレス */
   fallbackEmail: "contact@oym.co.jp",

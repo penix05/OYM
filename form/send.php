@@ -80,9 +80,28 @@ if (!empty($cfg['recaptcha_secret'])) {
         )))
     );
     $result = $verify ? json_decode($verify, true) : null;
-    $minScore = (float)($cfg['recaptcha_min_score'] ?? 0.5);
-    if (!is_array($result) || empty($result['success']) || (isset($result['score']) && (float)$result['score'] < $minScore)) {
-        oym_fail('自動送信の疑いがあるため受け付けられませんでした。お手数ですが直接メールにてご連絡ください。');
+
+    if (!is_array($result)) {
+        /*
+         * Googleの照会先に届かなかった（サーバーの外向き通信の障害、Google側の一時停止など）。
+         * ここで送信を止めると、ボットではない普通のお問い合わせまで全部失われてしまう。
+         * 原因がこちら側にあるときに機会損失を出すほうが損害が大きいので、
+         * 照会できなかった場合だけは通し、記録だけ残す。
+         * （この場合もハニーポット・連投制限・送信までの秒数チェックは効いている）
+         */
+        error_log('[OYM form] reCAPTCHA の照会に失敗したため、検証を省略して受け付けました。');
+    } else {
+        $minScore = (float)($cfg['recaptcha_min_score'] ?? 0.3);
+        $score    = isset($result['score']) ? (float)$result['score'] : null;
+        if (empty($result['success']) || ($score !== null && $score < $minScore)) {
+            error_log(sprintf(
+                '[OYM form] reCAPTCHA で拒否: success=%s score=%s errors=%s',
+                empty($result['success']) ? 'false' : 'true',
+                $score === null ? '-' : (string)$score,
+                isset($result['error-codes']) ? implode(',', (array)$result['error-codes']) : '-'
+            ));
+            oym_fail('自動送信の疑いがあるため受け付けられませんでした。お手数ですが直接メールにてご連絡ください。');
+        }
     }
 }
 
