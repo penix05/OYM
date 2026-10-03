@@ -256,9 +256,33 @@ if (!empty($cfg['autoreply'])) {
 
 /* ---- 送信記録（CSV） ---- */
 if (!empty($cfg['log_file'])) {
-    $dir = dirname((string)$cfg['log_file']);
+    $logFile = (string)$cfg['log_file'];
+    $dir = dirname($logFile);
     if (!is_dir($dir)) { @mkdir($dir, 0700, true); }
-    if ($fh = @fopen((string)$cfg['log_file'], 'a')) {
+
+    clearstatcache(true, $logFile);
+    $isNew = !is_file($logFile) || filesize($logFile) === 0;
+
+    if ($fh = @fopen($logFile, 'a')) {
+        if ($isNew) {
+            /*
+             * ファイルを新しく作るときだけ、先頭に2つ置く。
+             *
+             * 1) BOM（\xEF\xBB\xBF）
+             *    日本語版のExcelはCSVを既定でShift_JISとして開くため、
+             *    UTF-8のまま渡すと日本語が文字化けする。先頭にBOMがあると
+             *    ExcelがUTF-8と判別してくれるので、ダブルクリックで開ける。
+             * 2) 見出し行
+             *    どの列が何かを、ファイル単体で分かるようにしておく。
+             */
+            @fwrite($fh, "\xEF\xBB\xBF");
+            @fputcsv($fh, array(
+                '送信日時', 'フォーム', 'お立場', 'お名前', '学校名・会社名',
+                'メールアドレス', '電話番号', 'ご相談内容', 'IPアドレス',
+            ));
+            // 個人情報を含むファイルなので、所有者だけが読める権限にする
+            @chmod($logFile, 0600);
+        }
         $row = array(date('c'), $formType, $audienceLabel, $name, $org, $email, $tel, $message, $_SERVER['REMOTE_ADDR'] ?? '');
         @fputcsv($fh, array_map('oym_csv_safe', $row));
         @fclose($fh);
