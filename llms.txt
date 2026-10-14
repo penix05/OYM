@@ -1,0 +1,61 @@
+# 株式会社On Your Mark（OYM）
+
+> 専門学校の就職支援を中心に、新卒人材紹介・キャリア教育・学校行事・研修旅行まで行う総合支援会社です。学校・学生・企業の三者をつなぎ、専門学校の魅力と競争力を高めることを事業としています。首都圏（東京・神奈川・千葉・埼玉）を中心に、全国の専門学校・企業からの相談に対応しています。
+
+株式会社On Your Mark／〒150-0034 東京都渋谷区代官山町9-10 SodaCCo 3F／TEL 03-6455-3217
+
+このサイトの中心は、専門学校生の新卒採用について実務に即して書いたコラム23本です。「専門学校生を採用したい企業」と「企業とのつながりを増やしたい専門学校」の双方に向けた内容です。
+
+## サービス
+- [専門学校の就職支援・キャリア教育](https://oym.co.jp/service-school.html): 専門学校の就職支援に特化したOn Your Markの教育機関向けサービス。
+- [専門学校生の新卒採用・人材紹介](https://oym.co.jp/service-business.html): 専門卒採用・専門学校生の新卒紹介に特化。
+- [専門学校生の就職相談・新卒の就活支援](https://oym.co.jp/service-students.html): 専門学校生の新卒就職活動を、個別面談から内定・入社までサポート。
+- [専門学校の就職支援・求人開拓](https://oym.co.jp/school-job.html): 専門学校の就職支援と求人開拓を、外部から支えます。
+- [キャリア教育・就職対策授業](https://oym.co.jp/school-career.html): 専門学校のキャリア教育・就職対策授業を、当社の講師が担当します。
+- [学校行事・運動会の企画運営・アウトソーシング](https://oym.co.jp/school-event.html): 専門学校の学校行事を、会場探しから当日の運営までお引き受けします。
+- [研修旅行・学校旅行の企画手配](https://oym.co.jp/school-travel.html): 専門学校の研修旅行・学校旅行を企画・手配します。
+
+## 会社情報
+- [会社概要](https://oym.co.jp/company.html): 株式会社On Your Mark（OYM／オンユアマーク）の会社概要とMVV。
+- [プライバシーポリシー](https://oym.co.jp/privacy.html): 株式会社On Your Markのプライバシーポリシー。
+- [旅行業約款](https://oym.co.jp/travel-terms.html): 株式会社On Your Markの旅行業約款（受注型企画旅行契約・手配旅行契約）。
+
+## 分野別の新卒採用
+- [建築・インテリアの新卒採用](https://oym.co.jp/business-architecture.html): 建築・インテリアの新卒採用なら、専門学校生に特化したOn Your Mark。
+- [保育・介護・医療の新卒採用](https://oym.co.jp/business-care.html): 保育・介護・医療の新卒採用なら、専門学校生に特化したOn Your Mark。
+- [デザイン職の新卒採用](https://oym.co.jp/business-design.html): グラフィック・Web・イラスト・写真などデザイン職の新卒採用なら、専門学校生に特化したOn Your Mark。
+- [ファッション・アパレルの新卒採用](https://oym.co.jp/business-fashion.html): ファッション・アパレルの新卒採用なら、専門学校生に特化したOn Your Mark。
+- [ゲーム・CGの新卒採用](https://oym.co.jp/business-game.html): ゲーム・CG業界の新卒採用なら、専門学校生に特化したOn Your Mark。
+- [ホテル・ブライダル・観光の新卒採用](https://oym.co.jp/business-hospitality.html): ホテル・ブライダル・観光・鉄道の新卒採用なら、専門学校生に特化したOn Your Mark。
+- [IT・エンジニア職の新卒採用](https://oym.co.jp/business-it.html): IT・エンジニア職の新卒採用なら、専門学校生に特化したOn Your Mark。
+- [映像・放送の新卒採用](https://oym.co.jp/business-media.html): 映像・放送の新卒採用なら、専門学校生に特化したOn Your Mark。
+
+## コラム：専門学校生の新卒採用について
+- [コラム一覧](https://oym.co.jp/column/): 全23回。新卒採用の実務について、採用設計・求人票・選考・定着・学校との接点の観点から書いています。
+- [VOL.23 入社1年目に辞めないために、受け入れ側が決めておくこと](https://oym.co.jp/column/nyusha-1nenme-teichaku.html): 〔定着〕採用して終わりではありません。
+- [VOL.22 専攻と違う仕事を希望する学生を、どう見るか](https://oym.co.jp/column/senko-chigau-kibo.html): 〔選考〕専門学校生だからといって、全員が学んだ分野に進むわけではありません。
+- [VOL.21 学校の卒業制作展・作品展に、企業はどう関わるか](https://oym.co.jp/column/sotsuten-sakuhinten.html): 〔学校との接点〕デザイン・ゲーム・映像・建築系の専門学校には、学生の作品をまとめて見られる展示会があります。
+- [VOL.20 採用人数が1名のとき、何を変えるか](https://oym.co.jp/column/saiyo-1mei-sekkei.html): 〔採用設計〕「母集団形成」「歩留まり」という考え方は、1名採用の会社には当てはまりません。
+- [VOL.19 新卒を初めて採る会社が、先に決めておくこと](https://oym.co.jp/column/hajimete-shinsotsu-saiyo.html): 〔採用設計〕中途採用しかやってこなかった会社が新卒を採るとき、即戦力を前提にした受け入れ方は通用しません。
+- [VOL.18 建築・インテリアの新卒採用で、設計職と施工管理を書き分ける](https://oym.co.jp/column/kenchiku-sekkei-sekokanri.html): 〔職種別〕設計と施工管理は、学科が違えば学んできたことも違います。
+- [VOL.17 観光・ホテル・ブライダルの新卒採用で、配属と勤務形態をどう伝えるか](https://oym.co.jp/column/hotel-haizoku-kinmu.html): 〔定着〕早期離職の理由は、仕事の中身より「聞いていなかったこと」に集中します。
+- [VOL.16 ゲーム・CGの新卒採用で、作品の「どこまでが本人か」を確かめる](https://oym.co.jp/column/game-cg-sakuhin.html): 〔職種別〕ゲーム系の学科はチーム制作が中心で、授業課題と自主制作も混ざります。
+- [VOL.15 介護・医療の新卒採用で、資格の取得見込みをどう扱うか](https://oym.co.jp/column/shikaku-shutoku-mikomi.html): 〔職種別〕国家試験の合否が出るのは卒業の直前です。
+- [VOL.14 専門学校生の面接で、何を聞けば学びが見えるか](https://oym.co.jp/column/senmon-mensetsu-shitsumon.html): 〔選考〕「学生時代に力を入れたこと」を聞いても、専門学校生からは答えが出にくい。
+- [VOL.13 専門学校に出す求人票は、何を書けば読まれるか](https://oym.co.jp/column/senmon-kyujinhyo.html): 〔学校との接点〕学校を通した求人は、学生より先に就職担当者が読みます。
+- [VOL.12 専門学校生の就職活動は、いつ動くのか](https://oym.co.jp/column/senmon-shukatsu-jiki.html): 〔採用設計〕大学生と同じ時期に求人を出しても、専門学校生に届かないことがあります。
+- [VOL.11 専門学校の学内説明会に参加するには。学校への連絡と準備](https://oym.co.jp/column/gakunai-setsumeikai.html): 〔学校との接点〕学内説明会には、公募の窓口がありません。
+- [VOL.10 映像・放送の新卒採用で、入社前に何を伝えておくか](https://oym.co.jp/column/eizo-nyusha-mae.html): 〔定着〕「不規則な勤務です」と書くだけでは、学生に伝わりません。
+- [VOL.09 アパレルの新卒採用で、企画・生産・本部に応募が来ないとき](https://oym.co.jp/column/apparel-kikaku-seisan.html): 〔職種別〕販売職には応募があるのに、パタンナーや生産管理に集まらない。
+- [VOL.08 内定辞退が出たあと、企業ができること](https://oym.co.jp/column/naitei-jitai.html): 〔定着〕内定辞退の連絡を受けたとき、やることは2つあります。
+- [VOL.07 「大卒以上」を外すとき、社内をどう通すか](https://oym.co.jp/column/daisotsu-ijo-hazusu.html): 〔採用設計〕募集要件から「大卒以上」を外したいが、社内の合意が取れない。
+- [VOL.06 専門学校卒の初任給をどう決めるか](https://oym.co.jp/column/senmon-shoninkyu.html): 〔採用設計〕専門卒の初任給を、外部の相場から決めようとして止まっていませんか。
+- [VOL.05 ITの新卒採用で「未経験可」だけでは伝わらないこと](https://oym.co.jp/column/it-mikeiken-ka.html): 〔職種別〕エンジニア職の求人に「未経験可」と書いても、求める基礎を持つ学生から応募が来ない。
+- [VOL.04 デザイン職の新卒採用で、ポートフォリオのどこを見るか](https://oym.co.jp/column/portfolio-mikata.html): 〔選考〕学生のポートフォリオを、完成度だけで判断していませんか。
+- [VOL.03 保育士の新卒求人に応募が来ないときに見直すこと](https://oym.co.jp/column/hoikushi-shinsotsu.html): 〔職種別〕保育士の新卒求人に応募が来ない。
+- [VOL.02 施工管理の新卒採用で応募が集まらないときに確認すること](https://oym.co.jp/column/sekokanri-shinsotsu.html): 〔職種別〕施工管理の新卒求人に応募が来ない。
+- [VOL.01 新卒の応募が集まらないときに見直す、母集団と採用経路](https://oym.co.jp/column/shinsotsu-oubo-atsumaranai.html): 〔新卒採用〕新卒の求人を出しても応募が集まらない。
+
+## お問い合わせ
+- [お問い合わせ](https://oym.co.jp/contact.html): 教育機関・企業・学生・その他からの相談を受け付けています。
+- [資料ダウンロード](https://oym.co.jp/download.html): 教育機関向けのサービス案内資料（PDF）。

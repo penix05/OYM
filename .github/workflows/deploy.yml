@@ -60,6 +60,12 @@ jobs:
           esac
           echo "転送先: $DEPLOY_DIR"
 
+      - name: llms.txt の生成とサイトマップの点検
+        run: |
+          python3 tools/build-llms.py --ci
+        # サイトマップに漏れや余りがあると、ここで止まります。
+        # 黙って古い案内図を公開するより、気づけるほうがよいためです。
+
       - name: アップロード
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -84,6 +90,7 @@ jobs:
             **/.github/**
             **/node_modules/**
             *.md
+            tools/**
             制作会社への引き継ぎ.txt
             form/config.php
             form/logs/**
