@@ -20,8 +20,15 @@ var OYM_FORM = {
         このファイルはブラウザから丸ごと読めるので、絶対に書かないこと。 */
   recaptchaSiteKey: "6LcaId0tAAAAADbezCcaSzWSl9AQg3hR618Odc8a",
 
-  /* 送信に失敗したときに案内するメールアドレス */
+  /* フォームの一時停止。true にすると、フォームを使えなくして
+     メール・電話での連絡を案内する。
+     2026-10-22：PHPの脆弱性（php2shell）対応のため一時停止中。
+     PHPを修正版に切り替えたら false に戻し、.htaccess の一時措置も外すこと。 */
+  paused: true,
+
+  /* 送信に失敗したとき・一時停止中に案内する連絡先 */
   fallbackEmail: "contact@oym.co.jp",
+  fallbackTel: "03-6455-3217",
 
   /* 入力開始からこの秒数より早い送信はボット判定して弾く */
   minSubmitSeconds: 3

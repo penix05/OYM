@@ -64,6 +64,8 @@ function oymFormCfg() {
     endpoint: c.endpoint || '',
     recaptchaSiteKey: c.recaptchaSiteKey || '',
     fallbackEmail: c.fallbackEmail || 'contact@oym.co.jp',
+    fallbackTel: c.fallbackTel || '',
+    paused: c.paused === true,
     minSubmitSeconds: typeof c.minSubmitSeconds === 'number' ? c.minSubmitSeconds : 3
   };
 }
@@ -159,6 +161,24 @@ function oymRecaptchaToken(cfg, action) {
   });
 }
 
+/* --- フォームの一時停止表示（config.js の paused: true のとき） --- */
+function oymFormPause(form, formType, cfg) {
+  var mail = '<a href="mailto:' + cfg.fallbackEmail + '" style="white-space:nowrap">' + cfg.fallbackEmail + '</a>';
+  var tel = cfg.fallbackTel ? '／お電話（<a href="tel:' + cfg.fallbackTel.replace(/-/g, '') + '" style="white-space:nowrap">' + cfg.fallbackTel + '</a>）' : '';
+  var body = (formType === 'download')
+    ? '資料をご希望の方は、お名前と学校名・会社名をそえて、メール（' + mail + '）でお知らせください。担当者よりお送りします。'
+    : 'お手数ですが、メール（' + mail + '）' + tel + 'でご連絡ください。';
+  var box = document.createElement('div');
+  box.className = 'form-paused';
+  box.setAttribute('role', 'status');
+  box.style.cssText = 'background:#fff8e6;border:1px solid #e6b84d;color:#5b4410;border-radius:10px;padding:16px 18px;margin:0 0 22px;line-height:1.8;font-size:.92rem';
+  box.innerHTML = '<strong style="display:block;margin-bottom:4px">サーバーの保守のため、現在フォームを一時停止しています。</strong>' + body;
+  form.insertBefore(box, form.firstChild);
+  Array.prototype.forEach.call(form.querySelectorAll('input, textarea, select, button'), function (el) { el.disabled = true; });
+  form.setAttribute('aria-disabled', 'true');
+  form.addEventListener('submit', function (e) { e.preventDefault(); });
+}
+
 function oymContactInit(redirect, opts) {
   var form = document.getElementById('contact-form');
   if (!form) return;
@@ -166,6 +186,9 @@ function oymContactInit(redirect, opts) {
   redirect = redirect || 'thanks.html';
   var cfg = oymFormCfg();
   var formType = opts.formType || (redirect.indexOf('dl-') >= 0 ? 'download' : 'contact');
+
+  // 一時停止中：入力できないようにして、メール・電話での連絡を案内する
+  if (cfg.paused) { oymFormPause(form, formType, cfg); return; }
   var startedAt = Date.now();
 
   // deep link: ?type=school|company|student|other で種別を初期選択
