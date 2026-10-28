@@ -21,10 +21,10 @@ var OYM_FORM = {
   recaptchaSiteKey: "6LcaId0tAAAAADbezCcaSzWSl9AQg3hR618Odc8a",
 
   /* フォームの一時停止。true にすると、フォームを使えなくして
-     メール・電話での連絡を案内する。
-     2026-10-22：PHPの脆弱性（php2shell）対応のため一時停止中。
-     PHPを修正版に切り替えたら false に戻し、.htaccess の一時措置も外すこと。 */
-  paused: true,
+     メール・電話での連絡を案内する（緊急時用）。
+     履歴：2026-10-22〜10-29 PHPの脆弱性（php2shell）対応で一時停止。
+           Xserverが10-26に全PHPバージョンへ修正を適用したため再開。 */
+  paused: false,
 
   /* 送信に失敗したとき・一時停止中に案内する連絡先 */
   fallbackEmail: "contact@oym.co.jp",

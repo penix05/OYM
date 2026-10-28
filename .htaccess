@@ -59,17 +59,6 @@ ErrorDocument 404 /404.html
   Require all denied
 </FilesMatch>
 
-# ---------- 【一時措置】PHPを外から実行させない（2026-10-22〜） ----------
-# PHPの重大な脆弱性（CVE-2026-109618 / 109619、通称 php2shell）への対応。
-# サーバーのPHPが修正版（8.3など）に切り替わるまで、ブラウザからのPHPの実行を
-# サイト全体で止める。問い合わせフォーム・資料ダウンロードもこの間は使えない。
-# ※ cron からのコマンド実行（form/retention.php）には影響しない。
-# 【戻し方】PHPを修正版に切り替えたあと、このブロックを丸ごと削除し、
-#           assets/js/config.js の paused を false に戻す。
-<FilesMatch "\.(php|php[0-9]|phtml|phar)$">
-  Require all denied
-</FilesMatch>
-
 # ---------- セキュリティヘッダ ----------
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"
