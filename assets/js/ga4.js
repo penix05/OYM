@@ -10,6 +10,7 @@
      ・面談予約（STORES）へ      → reserve_click
      ・電話リンクのタップ        → tel_click（tel: リンクを置いた場合）
      ・フォームの入力開始        → form_start
+     ・コラムの相談ボタン        → cta_click（記事末尾の囲み・スマホ画面下の固定ボタン）
 
    ※「離脱クリック」「スクロール」「.pdf のダウンロード」は GA4 の
      拡張計測が自動で送るため、ここでは重複させていません。
@@ -165,6 +166,23 @@
         send('file_download', {
           file_name: 'OYM_service-guide.pdf',
           link_url: href,
+          page_location: location.href
+        });
+        return;
+      }
+
+      /* コラムの相談ボタン。
+         記事末尾の囲み（.col-cta）と、スマホの画面下に固定で出るボタン（.cta-sticky）。
+         どの記事から押されたかは page_location（記事のURL）で分かります。
+           cta_position … article_end（記事末尾）／ sticky（画面下の固定ボタン）
+           cta_type     … contact（問い合わせフォームへ）／ service（サービス紹介へ） */
+      var ctaBox = a.closest('.col-cta, .cta-sticky');
+      if (ctaBox && /\/column\//.test(location.pathname)) {
+        send('cta_click', {
+          cta_position: ctaBox.classList.contains('cta-sticky') ? 'sticky' : 'article_end',
+          cta_type: /contact\.html/i.test(href) ? 'contact' : 'service',
+          link_url: href,
+          link_text: (a.textContent || '').trim().slice(0, 100),
           page_location: location.href
         });
         return;
