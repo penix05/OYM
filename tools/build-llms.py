@@ -72,7 +72,7 @@ def build() -> str:
 
     L.append('## コラム：専門学校生の新卒採用について')
     L.append(f'- [コラム一覧]({URL}column/): 全{len(cols)}回。新卒採用の実務について、'
-             '採用設計・求人票・選考・定着・学校との接点の観点から書いています。')
+             '採用設計・求人票・選考・内定から入社まで・定着・学校との接点の観点から書いています。')
     for f, vol, tag in cols:
         t, d = meta(ROOT / 'column' / f)
         L.append(f'- [{vol} {t}]({URL}column/{f}): 〔{tag}〕{d}')
